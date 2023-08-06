@@ -2984,7 +2984,6 @@ case "${target}" in
 	;;
   lc_3.2-*-*)
 	config_lc_3_2=true
-	config_libnosys=false
 	;;
 esac
 
