@@ -55,7 +55,8 @@
             CFLAGS_FOR_TARGET="-ffunction-sections -fdata-sections" \
             ../configure \
               --prefix=$out --host=x86_64-pc-linux-gnu --target=lc_3.2 \
-              --disable-newlib-supplied-syscalls --disable-multilib
+              --enable-newlib-register-fini --disable-newlib-supplied-syscalls \
+              --disable-multilib
 
             popd
           '';

@@ -405,7 +405,8 @@ iq2000_libeval_a_OBJECTS = $(am_iq2000_libeval_a_OBJECTS)
 lc_3_2_liblc32trapnewlib_a_AR = $(AR) $(ARFLAGS)
 lc_3_2_liblc32trapnewlib_a_LIBADD =
 @CONFIG_LC_3_2_TRUE@am_lc_3_2_liblc32trapnewlib_a_OBJECTS =  \
-@CONFIG_LC_3_2_TRUE@	lc_3_2/crt0.$(OBJEXT)
+@CONFIG_LC_3_2_TRUE@	lc_3_2/common/crt0.$(OBJEXT) \
+@CONFIG_LC_3_2_TRUE@	lc_3_2/common/_exit.$(OBJEXT)
 lc_3_2_liblc32trapnewlib_a_OBJECTS =  \
 	$(am_lc_3_2_liblc32trapnewlib_a_OBJECTS)
 libnosys_libnosys_a_AR = $(AR) $(ARFLAGS)
@@ -1120,7 +1121,8 @@ TEXINFO_TEX = ../texinfo/texinfo.tex
 @CONFIG_WINCE_TRUE@wince_stub_exe_CPPFLAGS = $(AM_CPPFLAGS) -I$(gdbdir)
 @CONFIG_WINCE_TRUE@wince_stub_exe_LDADD = -lwinsock $(WINCE_STUB_LIBS)
 @CONFIG_LC_3_2_TRUE@lc_3_2_liblc32trapnewlib_a_SOURCES = \
-@CONFIG_LC_3_2_TRUE@	lc_3_2/crt0.S
+@CONFIG_LC_3_2_TRUE@	lc_3_2/common/crt0.S \
+@CONFIG_LC_3_2_TRUE@	lc_3_2/common/_exit.S
 
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
@@ -1535,14 +1537,19 @@ iq2000/libeval.a: $(iq2000_libeval_a_OBJECTS) $(iq2000_libeval_a_DEPENDENCIES) $
 	$(AM_V_at)-rm -f iq2000/libeval.a
 	$(AM_V_AR)$(iq2000_libeval_a_AR) iq2000/libeval.a $(iq2000_libeval_a_OBJECTS) $(iq2000_libeval_a_LIBADD)
 	$(AM_V_at)$(RANLIB) iq2000/libeval.a
+lc_3_2/common/$(am__dirstamp):
+	@$(MKDIR_P) lc_3_2/common
+	@: > lc_3_2/common/$(am__dirstamp)
+lc_3_2/common/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) lc_3_2/common/$(DEPDIR)
+	@: > lc_3_2/common/$(DEPDIR)/$(am__dirstamp)
+lc_3_2/common/crt0.$(OBJEXT): lc_3_2/common/$(am__dirstamp) \
+	lc_3_2/common/$(DEPDIR)/$(am__dirstamp)
+lc_3_2/common/_exit.$(OBJEXT): lc_3_2/common/$(am__dirstamp) \
+	lc_3_2/common/$(DEPDIR)/$(am__dirstamp)
 lc_3_2/$(am__dirstamp):
 	@$(MKDIR_P) lc_3_2
 	@: > lc_3_2/$(am__dirstamp)
-lc_3_2/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) lc_3_2/$(DEPDIR)
-	@: > lc_3_2/$(DEPDIR)/$(am__dirstamp)
-lc_3_2/crt0.$(OBJEXT): lc_3_2/$(am__dirstamp) \
-	lc_3_2/$(DEPDIR)/$(am__dirstamp)
 
 lc_3_2/liblc32trapnewlib.a: $(lc_3_2_liblc32trapnewlib_a_OBJECTS) $(lc_3_2_liblc32trapnewlib_a_DEPENDENCIES) $(EXTRA_lc_3_2_liblc32trapnewlib_a_DEPENDENCIES) lc_3_2/$(am__dirstamp)
 	$(AM_V_at)-rm -f lc_3_2/liblc32trapnewlib.a
@@ -1894,7 +1901,7 @@ mostlyclean-compile:
 	-rm -f csky/*.$(OBJEXT)
 	-rm -f d30v/*.$(OBJEXT)
 	-rm -f iq2000/*.$(OBJEXT)
-	-rm -f lc_3_2/*.$(OBJEXT)
+	-rm -f lc_3_2/common/*.$(OBJEXT)
 	-rm -f libnosys/*.$(OBJEXT)
 	-rm -f lm32/*.$(OBJEXT)
 	-rm -f nios2/*.$(OBJEXT)
@@ -1993,7 +2000,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@iq2000/$(DEPDIR)/unlink.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@iq2000/$(DEPDIR)/utime.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@iq2000/$(DEPDIR)/write.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@lc_3_2/$(DEPDIR)/crt0.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lc_3_2/common/$(DEPDIR)/_exit.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lc_3_2/common/$(DEPDIR)/crt0.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libnosys/$(DEPDIR)/_exit.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libnosys/$(DEPDIR)/chown.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libnosys/$(DEPDIR)/close.Po@am__quote@
@@ -4263,8 +4271,9 @@ distclean-generic:
 	-rm -f doc/$(am__dirstamp)
 	-rm -f iq2000/$(DEPDIR)/$(am__dirstamp)
 	-rm -f iq2000/$(am__dirstamp)
-	-rm -f lc_3_2/$(DEPDIR)/$(am__dirstamp)
 	-rm -f lc_3_2/$(am__dirstamp)
+	-rm -f lc_3_2/common/$(DEPDIR)/$(am__dirstamp)
+	-rm -f lc_3_2/common/$(am__dirstamp)
 	-rm -f libnosys/$(DEPDIR)/$(am__dirstamp)
 	-rm -f libnosys/$(am__dirstamp)
 	-rm -f lm32/$(DEPDIR)/$(am__dirstamp)
@@ -4286,7 +4295,7 @@ clean-am: clean-aminfo clean-binPROGRAMS clean-checkPROGRAMS \
 
 distclean: distclean-recursive
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
-	-rm -rf ./$(DEPDIR) aarch64/$(DEPDIR) arc/$(DEPDIR) arm/$(DEPDIR) bfin/$(DEPDIR) csky/$(DEPDIR) d30v/$(DEPDIR) iq2000/$(DEPDIR) lc_3_2/$(DEPDIR) libnosys/$(DEPDIR) lm32/$(DEPDIR) nios2/$(DEPDIR) riscv/$(DEPDIR)
+	-rm -rf ./$(DEPDIR) aarch64/$(DEPDIR) arc/$(DEPDIR) arm/$(DEPDIR) bfin/$(DEPDIR) csky/$(DEPDIR) d30v/$(DEPDIR) iq2000/$(DEPDIR) lc_3_2/common/$(DEPDIR) libnosys/$(DEPDIR) lm32/$(DEPDIR) nios2/$(DEPDIR) riscv/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-hdr distclean-local distclean-tags
@@ -4429,7 +4438,7 @@ installcheck-am:
 maintainer-clean: maintainer-clean-recursive
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 	-rm -rf $(top_srcdir)/autom4te.cache
-	-rm -rf ./$(DEPDIR) aarch64/$(DEPDIR) arc/$(DEPDIR) arm/$(DEPDIR) bfin/$(DEPDIR) csky/$(DEPDIR) d30v/$(DEPDIR) iq2000/$(DEPDIR) lc_3_2/$(DEPDIR) libnosys/$(DEPDIR) lm32/$(DEPDIR) nios2/$(DEPDIR) riscv/$(DEPDIR)
+	-rm -rf ./$(DEPDIR) aarch64/$(DEPDIR) arc/$(DEPDIR) arm/$(DEPDIR) bfin/$(DEPDIR) csky/$(DEPDIR) d30v/$(DEPDIR) iq2000/$(DEPDIR) lc_3_2/common/$(DEPDIR) libnosys/$(DEPDIR) lm32/$(DEPDIR) nios2/$(DEPDIR) riscv/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-aminfo \
 	maintainer-clean-generic maintainer-clean-local

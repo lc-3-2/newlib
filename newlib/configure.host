@@ -378,6 +378,7 @@ case "${host_cpu}" in
 	newlib_cflags="${newlib_cflags} -ffunction-sections -fdata-sections "
 	;;
   lc_3.2)
+	have_init_fini=no
 	;;
   *)
 	echo '***' "Newlib does not support CPU ${host_cpu}" 1>&2
