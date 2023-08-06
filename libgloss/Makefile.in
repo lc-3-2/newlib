@@ -14,6 +14,14 @@
 
 @SET_MAKE@
 
+###
+# Register the linker scripts
+#
+# We have one linker script for each "backend". So to select between them, we
+# link the right library and choose the right linker script.
+#
+# As for what this target does, it seems to install the linker scripts.
+
 
 
 am__is_gnu_make = { \
@@ -190,6 +198,17 @@ check_PROGRAMS = $(am__EXEEXT_2) $(am__EXEEXT_3)
 @CONFIG_RISCV_TRUE@	riscv/libsemihost.a
 @CONFIG_WINCE_TRUE@am__append_36 = $(gdbdir)
 @CONFIG_WINCE_TRUE@am__append_37 = wince/stub.exe
+@CONFIG_LC_3_2_TRUE@am__append_38 = \
+@CONFIG_LC_3_2_TRUE@	lc_3_2/lc32trapnewlib.ld
+
+
+###
+# Library for TRAP-based syscalls
+#
+# These work based off the TRAPs defined in the book. They don't interact with
+# MMIO at all. As such, these may be unsuited for supervisor-mode programming.
+# Still, it's useful since it's easy to simulate.
+@CONFIG_LC_3_2_TRUE@am__append_39 = lc_3_2/liblc32trapnewlib.a
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/../config/depstand.m4 \
@@ -383,6 +402,12 @@ iq2000_libeval_a_LIBADD =
 @CONFIG_IQ2000_TRUE@	iq2000/utime.$(OBJEXT) \
 @CONFIG_IQ2000_TRUE@	iq2000/write.$(OBJEXT)
 iq2000_libeval_a_OBJECTS = $(am_iq2000_libeval_a_OBJECTS)
+lc_3_2_liblc32trapnewlib_a_AR = $(AR) $(ARFLAGS)
+lc_3_2_liblc32trapnewlib_a_LIBADD =
+@CONFIG_LC_3_2_TRUE@am_lc_3_2_liblc32trapnewlib_a_OBJECTS =  \
+@CONFIG_LC_3_2_TRUE@	lc_3_2/crt0.$(OBJEXT)
+lc_3_2_liblc32trapnewlib_a_OBJECTS =  \
+	$(am_lc_3_2_liblc32trapnewlib_a_OBJECTS)
 libnosys_libnosys_a_AR = $(AR) $(ARFLAGS)
 libnosys_libnosys_a_LIBADD =
 @CONFIG_LIBNOSYS_TRUE@am_libnosys_libnosys_a_OBJECTS =  \
@@ -571,11 +596,12 @@ SOURCES = $(aarch64_librdimon_a_SOURCES) $(arc_libnsim_a_SOURCES) \
 	$(arm_librdimon_a_SOURCES) $(arm_librdpmon_a_SOURCES) \
 	$(bfin_libbfinbsp_a_SOURCES) $(bfin_libsim_a_SOURCES) \
 	$(csky_libsemi_a_SOURCES) $(d30v_libsim_a_SOURCES) \
-	$(iq2000_libeval_a_SOURCES) $(libnosys_libnosys_a_SOURCES) \
-	$(libobjs_a_SOURCES) $(lm32_libgloss_a_SOURCES) \
-	$(nios2_libnios2_a_SOURCES) $(riscv_libgloss_a_SOURCES) \
-	$(riscv_libsemihost_a_SOURCES) bfin/sim-test.c iq2000/test.c \
-	$(wince_stub_exe_SOURCES)
+	$(iq2000_libeval_a_SOURCES) \
+	$(lc_3_2_liblc32trapnewlib_a_SOURCES) \
+	$(libnosys_libnosys_a_SOURCES) $(libobjs_a_SOURCES) \
+	$(lm32_libgloss_a_SOURCES) $(nios2_libnios2_a_SOURCES) \
+	$(riscv_libgloss_a_SOURCES) $(riscv_libsemihost_a_SOURCES) \
+	bfin/sim-test.c iq2000/test.c $(wince_stub_exe_SOURCES)
 AM_V_DVIPS = $(am__v_DVIPS_@AM_V@)
 am__v_DVIPS_ = $(am__v_DVIPS_@AM_DEFAULT_V@)
 am__v_DVIPS_0 = @echo "  DVIPS   " $@;
@@ -798,11 +824,12 @@ multilibtool_DATA = $(am__append_3) $(am__append_6) $(am__append_7) \
 	$(am__append_8) $(am__append_13) $(am__append_15) \
 	$(am__append_18) $(am__append_22) $(am__append_23) \
 	$(am__append_27) $(am__append_29) $(am__append_32) \
-	$(am__append_34)
+	$(am__append_34) $(am__append_38)
 multilibtool_LIBRARIES = $(am__append_2) $(am__append_5) \
 	$(am__append_9) $(am__append_11) $(am__append_20) \
 	$(am__append_21) $(am__append_24) $(am__append_28) \
-	$(am__append_30) $(am__append_33) $(am__append_35)
+	$(am__append_30) $(am__append_33) $(am__append_35) \
+	$(am__append_39)
 includetooldir = $(tooldir)/include
 includetool_DATA = $(am__append_16)
 includesystooldir = $(tooldir)/include/sys
@@ -1092,6 +1119,9 @@ TEXINFO_TEX = ../texinfo/texinfo.tex
 @CONFIG_WINCE_TRUE@wince_stub_exe_SOURCES = wince-stub.c
 @CONFIG_WINCE_TRUE@wince_stub_exe_CPPFLAGS = $(AM_CPPFLAGS) -I$(gdbdir)
 @CONFIG_WINCE_TRUE@wince_stub_exe_LDADD = -lwinsock $(WINCE_STUB_LIBS)
+@CONFIG_LC_3_2_TRUE@lc_3_2_liblc32trapnewlib_a_SOURCES = \
+@CONFIG_LC_3_2_TRUE@	lc_3_2/crt0.S
+
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 
@@ -1099,7 +1129,7 @@ all: config.h
 .SUFFIXES: .S .c .dvi .o .obj .ps
 am--refresh: Makefile
 	@:
-$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/../multilib.am $(srcdir)/doc/Makefile.inc $(srcdir)/aarch64/Makefile.inc $(srcdir)/aarch64/cpu-init/Makefile.inc $(srcdir)/arc/Makefile.inc $(srcdir)/arm/Makefile.inc $(srcdir)/arm/cpu-init/Makefile.inc $(srcdir)/bfin/Makefile.inc $(srcdir)/csky/Makefile.inc $(srcdir)/d30v/Makefile.inc $(srcdir)/iq2000/Makefile.inc $(srcdir)/libnosys/Makefile.inc $(srcdir)/lm32/Makefile.inc $(srcdir)/nios2/Makefile.inc $(srcdir)/riscv/Makefile.inc $(srcdir)/wince/Makefile.inc $(am__configure_deps)
+$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/../multilib.am $(srcdir)/doc/Makefile.inc $(srcdir)/aarch64/Makefile.inc $(srcdir)/aarch64/cpu-init/Makefile.inc $(srcdir)/arc/Makefile.inc $(srcdir)/arm/Makefile.inc $(srcdir)/arm/cpu-init/Makefile.inc $(srcdir)/bfin/Makefile.inc $(srcdir)/csky/Makefile.inc $(srcdir)/d30v/Makefile.inc $(srcdir)/iq2000/Makefile.inc $(srcdir)/libnosys/Makefile.inc $(srcdir)/lm32/Makefile.inc $(srcdir)/nios2/Makefile.inc $(srcdir)/riscv/Makefile.inc $(srcdir)/wince/Makefile.inc $(srcdir)/lc_3_2/Makefile.inc $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -1121,7 +1151,7 @@ Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	    echo ' cd $(top_builddir) && $(SHELL) ./config.status $@ $(am__depfiles_maybe)'; \
 	    cd $(top_builddir) && $(SHELL) ./config.status $@ $(am__depfiles_maybe);; \
 	esac;
-$(top_srcdir)/../multilib.am $(srcdir)/doc/Makefile.inc $(srcdir)/aarch64/Makefile.inc $(srcdir)/aarch64/cpu-init/Makefile.inc $(srcdir)/arc/Makefile.inc $(srcdir)/arm/Makefile.inc $(srcdir)/arm/cpu-init/Makefile.inc $(srcdir)/bfin/Makefile.inc $(srcdir)/csky/Makefile.inc $(srcdir)/d30v/Makefile.inc $(srcdir)/iq2000/Makefile.inc $(srcdir)/libnosys/Makefile.inc $(srcdir)/lm32/Makefile.inc $(srcdir)/nios2/Makefile.inc $(srcdir)/riscv/Makefile.inc $(srcdir)/wince/Makefile.inc $(am__empty):
+$(top_srcdir)/../multilib.am $(srcdir)/doc/Makefile.inc $(srcdir)/aarch64/Makefile.inc $(srcdir)/aarch64/cpu-init/Makefile.inc $(srcdir)/arc/Makefile.inc $(srcdir)/arm/Makefile.inc $(srcdir)/arm/cpu-init/Makefile.inc $(srcdir)/bfin/Makefile.inc $(srcdir)/csky/Makefile.inc $(srcdir)/d30v/Makefile.inc $(srcdir)/iq2000/Makefile.inc $(srcdir)/libnosys/Makefile.inc $(srcdir)/lm32/Makefile.inc $(srcdir)/nios2/Makefile.inc $(srcdir)/riscv/Makefile.inc $(srcdir)/wince/Makefile.inc $(srcdir)/lc_3_2/Makefile.inc $(am__empty):
 
 $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
 	$(SHELL) ./config.status --recheck
@@ -1505,6 +1535,19 @@ iq2000/libeval.a: $(iq2000_libeval_a_OBJECTS) $(iq2000_libeval_a_DEPENDENCIES) $
 	$(AM_V_at)-rm -f iq2000/libeval.a
 	$(AM_V_AR)$(iq2000_libeval_a_AR) iq2000/libeval.a $(iq2000_libeval_a_OBJECTS) $(iq2000_libeval_a_LIBADD)
 	$(AM_V_at)$(RANLIB) iq2000/libeval.a
+lc_3_2/$(am__dirstamp):
+	@$(MKDIR_P) lc_3_2
+	@: > lc_3_2/$(am__dirstamp)
+lc_3_2/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) lc_3_2/$(DEPDIR)
+	@: > lc_3_2/$(DEPDIR)/$(am__dirstamp)
+lc_3_2/crt0.$(OBJEXT): lc_3_2/$(am__dirstamp) \
+	lc_3_2/$(DEPDIR)/$(am__dirstamp)
+
+lc_3_2/liblc32trapnewlib.a: $(lc_3_2_liblc32trapnewlib_a_OBJECTS) $(lc_3_2_liblc32trapnewlib_a_DEPENDENCIES) $(EXTRA_lc_3_2_liblc32trapnewlib_a_DEPENDENCIES) lc_3_2/$(am__dirstamp)
+	$(AM_V_at)-rm -f lc_3_2/liblc32trapnewlib.a
+	$(AM_V_AR)$(lc_3_2_liblc32trapnewlib_a_AR) lc_3_2/liblc32trapnewlib.a $(lc_3_2_liblc32trapnewlib_a_OBJECTS) $(lc_3_2_liblc32trapnewlib_a_LIBADD)
+	$(AM_V_at)$(RANLIB) lc_3_2/liblc32trapnewlib.a
 libnosys/$(am__dirstamp):
 	@$(MKDIR_P) libnosys
 	@: > libnosys/$(am__dirstamp)
@@ -1851,6 +1894,7 @@ mostlyclean-compile:
 	-rm -f csky/*.$(OBJEXT)
 	-rm -f d30v/*.$(OBJEXT)
 	-rm -f iq2000/*.$(OBJEXT)
+	-rm -f lc_3_2/*.$(OBJEXT)
 	-rm -f libnosys/*.$(OBJEXT)
 	-rm -f lm32/*.$(OBJEXT)
 	-rm -f nios2/*.$(OBJEXT)
@@ -1949,6 +1993,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@iq2000/$(DEPDIR)/unlink.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@iq2000/$(DEPDIR)/utime.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@iq2000/$(DEPDIR)/write.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lc_3_2/$(DEPDIR)/crt0.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libnosys/$(DEPDIR)/_exit.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libnosys/$(DEPDIR)/chown.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libnosys/$(DEPDIR)/close.Po@am__quote@
@@ -4218,6 +4263,8 @@ distclean-generic:
 	-rm -f doc/$(am__dirstamp)
 	-rm -f iq2000/$(DEPDIR)/$(am__dirstamp)
 	-rm -f iq2000/$(am__dirstamp)
+	-rm -f lc_3_2/$(DEPDIR)/$(am__dirstamp)
+	-rm -f lc_3_2/$(am__dirstamp)
 	-rm -f libnosys/$(DEPDIR)/$(am__dirstamp)
 	-rm -f libnosys/$(am__dirstamp)
 	-rm -f lm32/$(DEPDIR)/$(am__dirstamp)
@@ -4239,7 +4286,7 @@ clean-am: clean-aminfo clean-binPROGRAMS clean-checkPROGRAMS \
 
 distclean: distclean-recursive
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
-	-rm -rf ./$(DEPDIR) aarch64/$(DEPDIR) arc/$(DEPDIR) arm/$(DEPDIR) bfin/$(DEPDIR) csky/$(DEPDIR) d30v/$(DEPDIR) iq2000/$(DEPDIR) libnosys/$(DEPDIR) lm32/$(DEPDIR) nios2/$(DEPDIR) riscv/$(DEPDIR)
+	-rm -rf ./$(DEPDIR) aarch64/$(DEPDIR) arc/$(DEPDIR) arm/$(DEPDIR) bfin/$(DEPDIR) csky/$(DEPDIR) d30v/$(DEPDIR) iq2000/$(DEPDIR) lc_3_2/$(DEPDIR) libnosys/$(DEPDIR) lm32/$(DEPDIR) nios2/$(DEPDIR) riscv/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-hdr distclean-local distclean-tags
@@ -4382,7 +4429,7 @@ installcheck-am:
 maintainer-clean: maintainer-clean-recursive
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 	-rm -rf $(top_srcdir)/autom4te.cache
-	-rm -rf ./$(DEPDIR) aarch64/$(DEPDIR) arc/$(DEPDIR) arm/$(DEPDIR) bfin/$(DEPDIR) csky/$(DEPDIR) d30v/$(DEPDIR) iq2000/$(DEPDIR) libnosys/$(DEPDIR) lm32/$(DEPDIR) nios2/$(DEPDIR) riscv/$(DEPDIR)
+	-rm -rf ./$(DEPDIR) aarch64/$(DEPDIR) arc/$(DEPDIR) arm/$(DEPDIR) bfin/$(DEPDIR) csky/$(DEPDIR) d30v/$(DEPDIR) iq2000/$(DEPDIR) lc_3_2/$(DEPDIR) libnosys/$(DEPDIR) lm32/$(DEPDIR) nios2/$(DEPDIR) riscv/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-aminfo \
 	maintainer-clean-generic maintainer-clean-local
