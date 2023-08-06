@@ -46,3 +46,8 @@ core
 !core/
 
 lost+found
+
+Makefile
+build/
+
+.vscode
