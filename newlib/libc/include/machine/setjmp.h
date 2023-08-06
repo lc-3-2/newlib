@@ -400,6 +400,17 @@ _BEGIN_STD_C
 #endif
 #endif
 
+
+#ifdef __LC_3_2__
+/*
+  We need to save R4, R5, R6, and R7. The first three are saved because callees
+  can't clobber them. R7 is saved because we need to know where to return to.
+  All the other registers are caller-save.
+*/
+#define _JBLEN 4
+#define _JBTYPE int
+#endif
+
 #ifdef _JBLEN
 #ifdef _JBTYPE
 typedef	_JBTYPE jmp_buf[_JBLEN];
