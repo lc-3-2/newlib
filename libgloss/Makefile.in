@@ -405,7 +405,7 @@ iq2000_libeval_a_OBJECTS = $(am_iq2000_libeval_a_OBJECTS)
 lc_3_2_liblc32trapnewlib_a_AR = $(AR) $(ARFLAGS)
 lc_3_2_liblc32trapnewlib_a_LIBADD =
 @CONFIG_LC_3_2_TRUE@am_lc_3_2_liblc32trapnewlib_a_OBJECTS =  \
-@CONFIG_LC_3_2_TRUE@	lc_3_2/common/crt0.$(OBJEXT) \
+@CONFIG_LC_3_2_TRUE@	lc_3_2/common/_start.$(OBJEXT) \
 @CONFIG_LC_3_2_TRUE@	lc_3_2/common/_exit.$(OBJEXT)
 lc_3_2_liblc32trapnewlib_a_OBJECTS =  \
 	$(am_lc_3_2_liblc32trapnewlib_a_OBJECTS)
@@ -1121,7 +1121,7 @@ TEXINFO_TEX = ../texinfo/texinfo.tex
 @CONFIG_WINCE_TRUE@wince_stub_exe_CPPFLAGS = $(AM_CPPFLAGS) -I$(gdbdir)
 @CONFIG_WINCE_TRUE@wince_stub_exe_LDADD = -lwinsock $(WINCE_STUB_LIBS)
 @CONFIG_LC_3_2_TRUE@lc_3_2_liblc32trapnewlib_a_SOURCES = \
-@CONFIG_LC_3_2_TRUE@	lc_3_2/common/crt0.S \
+@CONFIG_LC_3_2_TRUE@	lc_3_2/common/_start.S \
 @CONFIG_LC_3_2_TRUE@	lc_3_2/common/_exit.S
 
 all: config.h
@@ -1543,7 +1543,7 @@ lc_3_2/common/$(am__dirstamp):
 lc_3_2/common/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) lc_3_2/common/$(DEPDIR)
 	@: > lc_3_2/common/$(DEPDIR)/$(am__dirstamp)
-lc_3_2/common/crt0.$(OBJEXT): lc_3_2/common/$(am__dirstamp) \
+lc_3_2/common/_start.$(OBJEXT): lc_3_2/common/$(am__dirstamp) \
 	lc_3_2/common/$(DEPDIR)/$(am__dirstamp)
 lc_3_2/common/_exit.$(OBJEXT): lc_3_2/common/$(am__dirstamp) \
 	lc_3_2/common/$(DEPDIR)/$(am__dirstamp)
@@ -2001,7 +2001,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@iq2000/$(DEPDIR)/utime.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@iq2000/$(DEPDIR)/write.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc_3_2/common/$(DEPDIR)/_exit.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@lc_3_2/common/$(DEPDIR)/crt0.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lc_3_2/common/$(DEPDIR)/_start.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libnosys/$(DEPDIR)/_exit.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libnosys/$(DEPDIR)/chown.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libnosys/$(DEPDIR)/close.Po@am__quote@

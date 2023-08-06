@@ -18,5 +18,5 @@ multilibtool_DATA += \
 
 multilibtool_LIBRARIES += %D%/liblc32trapnewlib.a
 %C%_liblc32trapnewlib_a_SOURCES = \
-	%D%/common/crt0.S \
+	%D%/common/_start.S \
 	%D%/common/_exit.S

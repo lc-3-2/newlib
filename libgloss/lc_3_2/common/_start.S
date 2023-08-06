@@ -1,4 +1,4 @@
-    .file "crt0.S"
+    .file "_start.S"
 ;; C Runtime Code
 ;;
 ;; This file defines the entrypoint for the program. It zeroes out the .bss
@@ -6,7 +6,7 @@
 ;; terminates, we call `exit`, which calls all the destructors and halts the
 ;; machine.
 
-    .section .crt0, "ax"
+    .section .start, "ax"
     .global _start
 _start:
 

@@ -11,8 +11,8 @@ SECTIONS {
     Place the startup code first. This way, we're fine even if we start
     execution at the start of the data instead of where `_start` points.
   */
-  .crt0 : {
-    *(.crt0)
+  .start : {
+    *(.start)
   } >ram
 
   .text : {
