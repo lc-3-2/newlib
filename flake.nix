@@ -52,7 +52,7 @@
             DLLTOOL_FOR_TARGET="llvm-dlltool" \
             LIPO_FOR_TARGET="llvm-lipo" \
             WINDRES_FOR_TARGET="llvm-windres" \
-            CFLAGS_FOR_TARGET="-nostdlib -ffunction-sections -fdata-sections" \
+            CFLAGS_FOR_TARGET="-ffunction-sections -fdata-sections" \
             ../configure \
               --prefix=$out --host=x86_64-pc-linux-gnu --target=lc_3.2 \
               --disable-newlib-supplied-syscalls --disable-multilib
