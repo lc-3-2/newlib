@@ -21,7 +21,7 @@
 
         # Usually, we would add custom packages with an overlay, but that adds a
         # lot of complexity. Thus, we fetch the package manually.
-        llvm-lc-3-2.packages.${system}.lc-3-2
+        llvm-lc-3-2.packages.${system}.llvm-lc-3-2
       ];
 
     in {
@@ -52,7 +52,7 @@
             DLLTOOL_FOR_TARGET="llvm-dlltool" \
             LIPO_FOR_TARGET="llvm-lipo" \
             WINDRES_FOR_TARGET="llvm-windres" \
-            CFLAGS_FOR_TARGET="-nostdlib -D__IEEE_LITTLE_ENDIAN -v" \
+            CFLAGS_FOR_TARGET="-nostdlib -D__IEEE_LITTLE_ENDIAN -ffunction-sections -fdata-sections" \
             ../configure \
               --host=x86_64-pc-linux-gnu --target=lc_3.2 \
               --prefix=$out \
