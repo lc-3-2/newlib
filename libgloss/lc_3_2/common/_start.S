@@ -24,13 +24,13 @@ _start:
     AND R0, R0, 0
     LEA R1, __bss_start
     LEA R2, __bss_end
+    BR .Lwhilecheck_zero_bss
 .Lwhile_zero_bss:
-    XOR R3, R1, R2
-    BRz .Lendwhile_zero_bss
     STW R0, R1, 0
     ADD R1, R1, 4
-    BR .Lwhile_zero_bss
-.Lendwhile_zero_bss:
+.Lwhilecheck_zero_bss:
+    XOR R3, R1, R2
+    BRnp .Lwhile_zero_bss
 
     ; Call `__libc_init_array` to call the constructors
     JSR __libc_init_array
@@ -48,13 +48,12 @@ _start:
     ADD R6, R6, 12
 
     ; Call `exit`
+    ; Exit code is the return value from `main`, which is in R0
     ADD R6, R6, -4
     STW R0, R6, 0
     JSR exit
 
     ; Calling `exit` should stop execution
-    ; If we somehow still got here, `CRASH`
-    ; If that doesn't work, spinlock
+    ; If we somehow still got here, spinlock
 .Lspinlock:
-    CRASH
     BR .Lspinlock
