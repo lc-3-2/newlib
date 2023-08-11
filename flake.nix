@@ -16,12 +16,14 @@
       pkgs = nixpkgs-23-05.legacyPackages.${system};
       inherit (pkgs) stdenv;
 
+      # Ensure that the compiler is present at runtime. We need it to use the
+      # library, after all.
+      propagatedBuildInputs = [
+        llvm-lc-3-2.packages.${system}.llvm-lc-3-2
+      ];
+
       nativeBuildInputs = [
         pkgs.texinfo
-
-        # Usually, we would add custom packages with an overlay, but that adds a
-        # lot of complexity. Thus, we fetch the package manually.
-        llvm-lc-3-2.packages.${system}.llvm-lc-3-2
       ];
 
     in {
@@ -30,13 +32,12 @@
         default = newlib-lc-3-2;
 
         newlib-lc-3-2 = stdenv.mkDerivation {
-          inherit name nativeBuildInputs;
+          inherit name propagatedBuildInputs nativeBuildInputs;
 
           src = self;
 
           configurePhase = ''
-            mkdir ./build/
-            pushd ./build/
+            runHook preConfigure
 
             CC_FOR_TARGET="clang" \
             CXX_FOR_TARGET="clang++" \
@@ -54,15 +55,38 @@
             WINDRES_FOR_TARGET="llvm-windres" \
             CFLAGS_FOR_TARGET="-ffunction-sections -fdata-sections" \
             ../configure \
-              --prefix=$out --host=x86_64-pc-linux-gnu --target=lc_3.2 \
+              --prefix=$out --host=${system} --target=lc_3.2 \
               --enable-newlib-register-fini --disable-newlib-supplied-syscalls \
               --disable-multilib
 
-            popd
+            runHook postConfigure
           '';
 
-          buildPhase = "make -C ./build/";
-          installPhase = "make -C ./build/ install";
+          # Build in parallel
+          enableParallelBuilding = true;
+
+          # Build out of tree
+          preConfigure = ''
+            mkdir ./build/
+            pushd ./build/
+          '';
+          postConfigure = ''
+            popd
+          '';
+          makeFlags = ["-C" "./build/"];
+
+          # Add an easy way to get the sysroot to pass to `clang`. This is
+          # needed when we're running it in the shell.
+          postInstall = ''
+            mkdir $out/bin/
+
+            cat <<EOF > $out/bin/lc32newlib-sysroot
+            #!/bin/bash
+            echo "$out/lc_3.2/"
+            EOF
+
+            chmod +x $out/bin/lc32newlib-sysroot
+          '';
         };
       };
 
@@ -70,7 +94,7 @@
         default = newlib-lc-3-2;
 
         newlib-lc-3-2 = pkgs.mkShell {
-          inherit name nativeBuildInputs;
+          inherit name propagatedBuildInputs nativeBuildInputs;
 
           # Add autotools in case we need to modify and regenerate. We don't
           # mark this as a nativeBuildInput for the package since this is only
