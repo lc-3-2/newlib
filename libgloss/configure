@@ -630,8 +630,8 @@ CPPFLAGS
 LDFLAGS
 CFLAGS
 CC
-CONFIG_LC_3_2_FALSE
-CONFIG_LC_3_2_TRUE
+CONFIG_LC32_FALSE
+CONFIG_LC32_TRUE
 CONFIG_WINCE_FALSE
 CONFIG_WINCE_TRUE
 CONFIG_RISCV_FALSE
@@ -2983,7 +2983,7 @@ case "${target}" in
 	config_nios2=true
 	;;
   lc_3.2-*-*)
-	config_lc_3_2=true
+	config_lc32=true
 	;;
 esac
 
@@ -3084,12 +3084,12 @@ else
   CONFIG_WINCE_FALSE=
 fi
 
-   if test x$config_lc_3_2 = xtrue; then
-  CONFIG_LC_3_2_TRUE=
-  CONFIG_LC_3_2_FALSE='#'
+   if test x$config_lc32 = xtrue; then
+  CONFIG_LC32_TRUE=
+  CONFIG_LC32_FALSE='#'
 else
-  CONFIG_LC_3_2_TRUE='#'
-  CONFIG_LC_3_2_FALSE=
+  CONFIG_LC32_TRUE='#'
+  CONFIG_LC32_FALSE=
 fi
 
 
@@ -5360,8 +5360,8 @@ if test -z "${CONFIG_WINCE_TRUE}" && test -z "${CONFIG_WINCE_FALSE}"; then
   as_fn_error $? "conditional \"CONFIG_WINCE\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
-if test -z "${CONFIG_LC_3_2_TRUE}" && test -z "${CONFIG_LC_3_2_FALSE}"; then
-  as_fn_error $? "conditional \"CONFIG_LC_3_2\" was never defined.
+if test -z "${CONFIG_LC32_TRUE}" && test -z "${CONFIG_LC32_FALSE}"; then
+  as_fn_error $? "conditional \"CONFIG_LC32\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${AMDEP_TRUE}" && test -z "${AMDEP_FALSE}"; then

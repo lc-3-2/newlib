@@ -99,6 +99,6 @@ endif
 if CONFIG_WINCE
 include wince/Makefile.inc
 endif
-if CONFIG_LC_3_2
-include lc_3_2/Makefile.inc
+if CONFIG_LC32
+include lc32/Makefile.inc
 endif
