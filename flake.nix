@@ -14,12 +14,13 @@
     let
       name = "newlib-lc-3.2-dev";
       pkgs = nixpkgs-23-05.legacyPackages.${system};
+      llvm-lc-3-2-pkg = llvm-lc-3-2.packages.${system}.llvm-lc-3-2;
       inherit (pkgs) stdenv;
 
       # Ensure that the compiler is present at runtime. We need it to use the
       # library, after all.
       propagatedBuildInputs = [
-        llvm-lc-3-2.packages.${system}.llvm-lc-3-2
+        llvm-lc-3-2-pkg
       ];
 
       nativeBuildInputs = [
@@ -39,21 +40,21 @@
           configurePhase = ''
             runHook preConfigure
 
-            CC_FOR_TARGET="clang" \
-            CXX_FOR_TARGET="clang++" \
-            AS_FOR_TARGET="llvm-mc" \
-            LD_FOR_TARGET="ld.lld" \
-            AR_FOR_TARGET="llvm-ar" \
-            RANLIB_FOR_TARGET="llvm-ranlib" \
-            STRIP_FOR_TARGET="llvm-strip" \
-            OBJCOPY_FOR_TARGET="llvm-objcopy" \
-            OBJDUMP_FOR_TARGET="llvm-objdump" \
-            READELF_FOR_TARGET="llvm-readelf" \
-            NM_FOR_TARGET="llvm-nm" \
-            DLLTOOL_FOR_TARGET="llvm-dlltool" \
-            LIPO_FOR_TARGET="llvm-lipo" \
-            WINDRES_FOR_TARGET="llvm-windres" \
-            CFLAGS_FOR_TARGET="-ffunction-sections -fdata-sections" \
+            CC_FOR_TARGET="${llvm-lc-3-2-pkg}/bin/clang" \
+            CXX_FOR_TARGET="${llvm-lc-3-2-pkg}/bin/clang++" \
+            AS_FOR_TARGET="${llvm-lc-3-2-pkg}/bin/llvm-mc" \
+            LD_FOR_TARGET="${llvm-lc-3-2-pkg}/bin/ld.lld" \
+            AR_FOR_TARGET="${llvm-lc-3-2-pkg}/bin/llvm-ar" \
+            RANLIB_FOR_TARGET="${llvm-lc-3-2-pkg}/bin/llvm-ranlib" \
+            STRIP_FOR_TARGET="${llvm-lc-3-2-pkg}/bin/llvm-strip" \
+            OBJCOPY_FOR_TARGET="${llvm-lc-3-2-pkg}/bin/llvm-objcopy" \
+            OBJDUMP_FOR_TARGET="${llvm-lc-3-2-pkg}/bin/llvm-objdump" \
+            READELF_FOR_TARGET="${llvm-lc-3-2-pkg}/bin/llvm-readelf" \
+            NM_FOR_TARGET="${llvm-lc-3-2-pkg}/bin/llvm-nm" \
+            DLLTOOL_FOR_TARGET="${llvm-lc-3-2-pkg}/bin/llvm-dlltool" \
+            LIPO_FOR_TARGET="${llvm-lc-3-2-pkg}/bin/llvm-lipo" \
+            WINDRES_FOR_TARGET="${llvm-lc-3-2-pkg}/bin/llvm-windres" \
+            CFLAGS_FOR_TARGET="-g -ffunction-sections -fdata-sections" \
             ../configure \
               --prefix=$out --host=${system} --target=lc_3.2 \
               --enable-newlib-register-fini --disable-newlib-supplied-syscalls \
