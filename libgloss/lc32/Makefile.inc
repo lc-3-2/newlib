@@ -10,6 +10,20 @@ multilibtool_DATA += \
 	%D%/lc32Trap.ld
 
 ###
+# Barebones backend
+#
+# This backend assumes nothing about the machine, not even that TRAPs have their
+# usual meaning. As such, it functions very closely to a bare-metal environment.
+#
+# There is no corresponding linker script for this backend. It doesn't make much
+# sense to provide one, since we don't even know where the program will be.
+
+multilibtool_LIBRARIES += %D%/liblc32glossx.a
+%C%_liblc32glossx_a_SOURCES = \
+	%D%/x/_start.S \
+	%D%/x/_exit.S
+
+###
 # Backend for TRAP-based syscalls
 #
 # These work based off the TRAPs defined in the book. They don't interact with
