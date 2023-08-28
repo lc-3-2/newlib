@@ -416,8 +416,9 @@ lc32_liblc32glossTrap_a_AR = $(AR) $(ARFLAGS)
 lc32_liblc32glossTrap_a_LIBADD =
 @CONFIG_LC32_TRUE@am_lc32_liblc32glossTrap_a_OBJECTS =  \
 @CONFIG_LC32_TRUE@	lc32/x/_start.$(OBJEXT) \
-@CONFIG_LC32_TRUE@	lc32/Trap/_exit.$(OBJEXT) \
-@CONFIG_LC32_TRUE@	lc32/x/sigprocmask.$(OBJEXT)
+@CONFIG_LC32_TRUE@	lc32/x/_sbrk.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/sigprocmask.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/Trap/_exit.$(OBJEXT)
 lc32_liblc32glossTrap_a_OBJECTS =  \
 	$(am_lc32_liblc32glossTrap_a_OBJECTS)
 lc32_liblc32glossx_a_AR = $(AR) $(ARFLAGS)
@@ -425,6 +426,7 @@ lc32_liblc32glossx_a_LIBADD =
 @CONFIG_LC32_TRUE@am_lc32_liblc32glossx_a_OBJECTS =  \
 @CONFIG_LC32_TRUE@	lc32/x/_start.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_exit.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/_sbrk.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/sigprocmask.$(OBJEXT)
 lc32_liblc32glossx_a_OBJECTS = $(am_lc32_liblc32glossx_a_OBJECTS)
 libnosys_libnosys_a_AR = $(AR) $(ARFLAGS)
@@ -1141,12 +1143,14 @@ TEXINFO_TEX = ../texinfo/texinfo.tex
 @CONFIG_LC32_TRUE@lc32_liblc32glossx_a_SOURCES = \
 @CONFIG_LC32_TRUE@	lc32/x/_start.S \
 @CONFIG_LC32_TRUE@	lc32/x/_exit.S \
+@CONFIG_LC32_TRUE@	lc32/x/_sbrk.c \
 @CONFIG_LC32_TRUE@	lc32/x/sigprocmask.c
 
 @CONFIG_LC32_TRUE@lc32_liblc32glossTrap_a_SOURCES = \
 @CONFIG_LC32_TRUE@	lc32/x/_start.S \
-@CONFIG_LC32_TRUE@	lc32/Trap/_exit.S \
-@CONFIG_LC32_TRUE@	lc32/x/sigprocmask.c
+@CONFIG_LC32_TRUE@	lc32/x/_sbrk.c \
+@CONFIG_LC32_TRUE@	lc32/x/sigprocmask.c \
+@CONFIG_LC32_TRUE@	lc32/Trap/_exit.S
 
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
@@ -1569,6 +1573,10 @@ lc32/x/$(DEPDIR)/$(am__dirstamp):
 	@: > lc32/x/$(DEPDIR)/$(am__dirstamp)
 lc32/x/_start.$(OBJEXT): lc32/x/$(am__dirstamp) \
 	lc32/x/$(DEPDIR)/$(am__dirstamp)
+lc32/x/_sbrk.$(OBJEXT): lc32/x/$(am__dirstamp) \
+	lc32/x/$(DEPDIR)/$(am__dirstamp)
+lc32/x/sigprocmask.$(OBJEXT): lc32/x/$(am__dirstamp) \
+	lc32/x/$(DEPDIR)/$(am__dirstamp)
 lc32/Trap/$(am__dirstamp):
 	@$(MKDIR_P) lc32/Trap
 	@: > lc32/Trap/$(am__dirstamp)
@@ -1577,8 +1585,6 @@ lc32/Trap/$(DEPDIR)/$(am__dirstamp):
 	@: > lc32/Trap/$(DEPDIR)/$(am__dirstamp)
 lc32/Trap/_exit.$(OBJEXT): lc32/Trap/$(am__dirstamp) \
 	lc32/Trap/$(DEPDIR)/$(am__dirstamp)
-lc32/x/sigprocmask.$(OBJEXT): lc32/x/$(am__dirstamp) \
-	lc32/x/$(DEPDIR)/$(am__dirstamp)
 lc32/$(am__dirstamp):
 	@$(MKDIR_P) lc32
 	@: > lc32/$(am__dirstamp)
@@ -2042,6 +2048,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@iq2000/$(DEPDIR)/write.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/Trap/$(DEPDIR)/_exit.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_exit.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_sbrk.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_start.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/sigprocmask.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libnosys/$(DEPDIR)/_exit.Po@am__quote@

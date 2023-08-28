@@ -22,6 +22,7 @@ multilibtool_LIBRARIES += %D%/liblc32glossx.a
 %C%_liblc32glossx_a_SOURCES = \
 	%D%/x/_start.S \
 	%D%/x/_exit.S \
+	%D%/x/_sbrk.c \
 	%D%/x/sigprocmask.c
 
 ###
@@ -34,5 +35,6 @@ multilibtool_LIBRARIES += %D%/liblc32glossx.a
 multilibtool_LIBRARIES += %D%/liblc32glossTrap.a
 %C%_liblc32glossTrap_a_SOURCES = \
 	%D%/x/_start.S \
-	%D%/Trap/_exit.S \
-	%D%/x/sigprocmask.c
+	%D%/x/_sbrk.c \
+	%D%/x/sigprocmask.c \
+	%D%/Trap/_exit.S

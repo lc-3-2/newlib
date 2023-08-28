@@ -79,6 +79,11 @@ SECTIONS {
     __bss_end = .;
   } >ram
 
+  /* Set the heap bounds. Note `malloc` wants 8-byte alignment. */
+  . = ALIGN(8);
+  __heap_start = .;
+  __heap_end = 0x80000000;
+
   /* Don't forget to define where the stack starts */
   __sp_init = 0xf0000000;
 
