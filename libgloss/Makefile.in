@@ -417,8 +417,12 @@ lc32_liblc32glossTrap_a_LIBADD =
 @CONFIG_LC32_TRUE@am_lc32_liblc32glossTrap_a_OBJECTS =  \
 @CONFIG_LC32_TRUE@	lc32/x/_start.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_sbrk.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/_open.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/sigprocmask.$(OBJEXT) \
-@CONFIG_LC32_TRUE@	lc32/Trap/_exit.$(OBJEXT)
+@CONFIG_LC32_TRUE@	lc32/Trap/_exit.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/Trap/_close.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/Trap/_isatty.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/Trap/internal/fsstate.$(OBJEXT)
 lc32_liblc32glossTrap_a_OBJECTS =  \
 	$(am_lc32_liblc32glossTrap_a_OBJECTS)
 lc32_liblc32glossx_a_AR = $(AR) $(ARFLAGS)
@@ -427,6 +431,9 @@ lc32_liblc32glossx_a_LIBADD =
 @CONFIG_LC32_TRUE@	lc32/x/_start.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_exit.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_sbrk.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/_open.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/_close.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/_isatty.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/sigprocmask.$(OBJEXT)
 lc32_liblc32glossx_a_OBJECTS = $(am_lc32_liblc32glossx_a_OBJECTS)
 libnosys_libnosys_a_AR = $(AR) $(ARFLAGS)
@@ -1144,13 +1151,20 @@ TEXINFO_TEX = ../texinfo/texinfo.tex
 @CONFIG_LC32_TRUE@	lc32/x/_start.S \
 @CONFIG_LC32_TRUE@	lc32/x/_exit.S \
 @CONFIG_LC32_TRUE@	lc32/x/_sbrk.c \
+@CONFIG_LC32_TRUE@	lc32/x/_open.c \
+@CONFIG_LC32_TRUE@	lc32/x/_close.c \
+@CONFIG_LC32_TRUE@	lc32/x/_isatty.c \
 @CONFIG_LC32_TRUE@	lc32/x/sigprocmask.c
 
 @CONFIG_LC32_TRUE@lc32_liblc32glossTrap_a_SOURCES = \
 @CONFIG_LC32_TRUE@	lc32/x/_start.S \
 @CONFIG_LC32_TRUE@	lc32/x/_sbrk.c \
+@CONFIG_LC32_TRUE@	lc32/x/_open.c \
 @CONFIG_LC32_TRUE@	lc32/x/sigprocmask.c \
-@CONFIG_LC32_TRUE@	lc32/Trap/_exit.S
+@CONFIG_LC32_TRUE@	lc32/Trap/_exit.S \
+@CONFIG_LC32_TRUE@	lc32/Trap/_close.c \
+@CONFIG_LC32_TRUE@	lc32/Trap/_isatty.c \
+@CONFIG_LC32_TRUE@	lc32/Trap/internal/fsstate.c
 
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
@@ -1575,6 +1589,8 @@ lc32/x/_start.$(OBJEXT): lc32/x/$(am__dirstamp) \
 	lc32/x/$(DEPDIR)/$(am__dirstamp)
 lc32/x/_sbrk.$(OBJEXT): lc32/x/$(am__dirstamp) \
 	lc32/x/$(DEPDIR)/$(am__dirstamp)
+lc32/x/_open.$(OBJEXT): lc32/x/$(am__dirstamp) \
+	lc32/x/$(DEPDIR)/$(am__dirstamp)
 lc32/x/sigprocmask.$(OBJEXT): lc32/x/$(am__dirstamp) \
 	lc32/x/$(DEPDIR)/$(am__dirstamp)
 lc32/Trap/$(am__dirstamp):
@@ -1585,6 +1601,19 @@ lc32/Trap/$(DEPDIR)/$(am__dirstamp):
 	@: > lc32/Trap/$(DEPDIR)/$(am__dirstamp)
 lc32/Trap/_exit.$(OBJEXT): lc32/Trap/$(am__dirstamp) \
 	lc32/Trap/$(DEPDIR)/$(am__dirstamp)
+lc32/Trap/_close.$(OBJEXT): lc32/Trap/$(am__dirstamp) \
+	lc32/Trap/$(DEPDIR)/$(am__dirstamp)
+lc32/Trap/_isatty.$(OBJEXT): lc32/Trap/$(am__dirstamp) \
+	lc32/Trap/$(DEPDIR)/$(am__dirstamp)
+lc32/Trap/internal/$(am__dirstamp):
+	@$(MKDIR_P) lc32/Trap/internal
+	@: > lc32/Trap/internal/$(am__dirstamp)
+lc32/Trap/internal/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) lc32/Trap/internal/$(DEPDIR)
+	@: > lc32/Trap/internal/$(DEPDIR)/$(am__dirstamp)
+lc32/Trap/internal/fsstate.$(OBJEXT):  \
+	lc32/Trap/internal/$(am__dirstamp) \
+	lc32/Trap/internal/$(DEPDIR)/$(am__dirstamp)
 lc32/$(am__dirstamp):
 	@$(MKDIR_P) lc32
 	@: > lc32/$(am__dirstamp)
@@ -1594,6 +1623,10 @@ lc32/liblc32glossTrap.a: $(lc32_liblc32glossTrap_a_OBJECTS) $(lc32_liblc32glossT
 	$(AM_V_AR)$(lc32_liblc32glossTrap_a_AR) lc32/liblc32glossTrap.a $(lc32_liblc32glossTrap_a_OBJECTS) $(lc32_liblc32glossTrap_a_LIBADD)
 	$(AM_V_at)$(RANLIB) lc32/liblc32glossTrap.a
 lc32/x/_exit.$(OBJEXT): lc32/x/$(am__dirstamp) \
+	lc32/x/$(DEPDIR)/$(am__dirstamp)
+lc32/x/_close.$(OBJEXT): lc32/x/$(am__dirstamp) \
+	lc32/x/$(DEPDIR)/$(am__dirstamp)
+lc32/x/_isatty.$(OBJEXT): lc32/x/$(am__dirstamp) \
 	lc32/x/$(DEPDIR)/$(am__dirstamp)
 
 lc32/liblc32glossx.a: $(lc32_liblc32glossx_a_OBJECTS) $(lc32_liblc32glossx_a_DEPENDENCIES) $(EXTRA_lc32_liblc32glossx_a_DEPENDENCIES) lc32/$(am__dirstamp)
@@ -1947,6 +1980,7 @@ mostlyclean-compile:
 	-rm -f d30v/*.$(OBJEXT)
 	-rm -f iq2000/*.$(OBJEXT)
 	-rm -f lc32/Trap/*.$(OBJEXT)
+	-rm -f lc32/Trap/internal/*.$(OBJEXT)
 	-rm -f lc32/x/*.$(OBJEXT)
 	-rm -f libnosys/*.$(OBJEXT)
 	-rm -f lm32/*.$(OBJEXT)
@@ -2046,8 +2080,14 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@iq2000/$(DEPDIR)/unlink.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@iq2000/$(DEPDIR)/utime.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@iq2000/$(DEPDIR)/write.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lc32/Trap/$(DEPDIR)/_close.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/Trap/$(DEPDIR)/_exit.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lc32/Trap/$(DEPDIR)/_isatty.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lc32/Trap/internal/$(DEPDIR)/fsstate.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_close.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_exit.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_isatty.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_open.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_sbrk.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_start.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/sigprocmask.Po@am__quote@
@@ -4323,6 +4363,8 @@ distclean-generic:
 	-rm -f lc32/$(am__dirstamp)
 	-rm -f lc32/Trap/$(DEPDIR)/$(am__dirstamp)
 	-rm -f lc32/Trap/$(am__dirstamp)
+	-rm -f lc32/Trap/internal/$(DEPDIR)/$(am__dirstamp)
+	-rm -f lc32/Trap/internal/$(am__dirstamp)
 	-rm -f lc32/x/$(DEPDIR)/$(am__dirstamp)
 	-rm -f lc32/x/$(am__dirstamp)
 	-rm -f libnosys/$(DEPDIR)/$(am__dirstamp)
@@ -4346,7 +4388,7 @@ clean-am: clean-aminfo clean-binPROGRAMS clean-checkPROGRAMS \
 
 distclean: distclean-recursive
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
-	-rm -rf ./$(DEPDIR) aarch64/$(DEPDIR) arc/$(DEPDIR) arm/$(DEPDIR) bfin/$(DEPDIR) csky/$(DEPDIR) d30v/$(DEPDIR) iq2000/$(DEPDIR) lc32/Trap/$(DEPDIR) lc32/x/$(DEPDIR) libnosys/$(DEPDIR) lm32/$(DEPDIR) nios2/$(DEPDIR) riscv/$(DEPDIR)
+	-rm -rf ./$(DEPDIR) aarch64/$(DEPDIR) arc/$(DEPDIR) arm/$(DEPDIR) bfin/$(DEPDIR) csky/$(DEPDIR) d30v/$(DEPDIR) iq2000/$(DEPDIR) lc32/Trap/$(DEPDIR) lc32/Trap/internal/$(DEPDIR) lc32/x/$(DEPDIR) libnosys/$(DEPDIR) lm32/$(DEPDIR) nios2/$(DEPDIR) riscv/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-hdr distclean-local distclean-tags
@@ -4489,7 +4531,7 @@ installcheck-am:
 maintainer-clean: maintainer-clean-recursive
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 	-rm -rf $(top_srcdir)/autom4te.cache
-	-rm -rf ./$(DEPDIR) aarch64/$(DEPDIR) arc/$(DEPDIR) arm/$(DEPDIR) bfin/$(DEPDIR) csky/$(DEPDIR) d30v/$(DEPDIR) iq2000/$(DEPDIR) lc32/Trap/$(DEPDIR) lc32/x/$(DEPDIR) libnosys/$(DEPDIR) lm32/$(DEPDIR) nios2/$(DEPDIR) riscv/$(DEPDIR)
+	-rm -rf ./$(DEPDIR) aarch64/$(DEPDIR) arc/$(DEPDIR) arm/$(DEPDIR) bfin/$(DEPDIR) csky/$(DEPDIR) d30v/$(DEPDIR) iq2000/$(DEPDIR) lc32/Trap/$(DEPDIR) lc32/Trap/internal/$(DEPDIR) lc32/x/$(DEPDIR) libnosys/$(DEPDIR) lm32/$(DEPDIR) nios2/$(DEPDIR) riscv/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-aminfo \
 	maintainer-clean-generic maintainer-clean-local

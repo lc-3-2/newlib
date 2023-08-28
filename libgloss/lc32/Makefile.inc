@@ -23,6 +23,9 @@ multilibtool_LIBRARIES += %D%/liblc32glossx.a
 	%D%/x/_start.S \
 	%D%/x/_exit.S \
 	%D%/x/_sbrk.c \
+	%D%/x/_open.c \
+	%D%/x/_close.c \
+	%D%/x/_isatty.c \
 	%D%/x/sigprocmask.c
 
 ###
@@ -36,5 +39,9 @@ multilibtool_LIBRARIES += %D%/liblc32glossTrap.a
 %C%_liblc32glossTrap_a_SOURCES = \
 	%D%/x/_start.S \
 	%D%/x/_sbrk.c \
+	%D%/x/_open.c \
 	%D%/x/sigprocmask.c \
-	%D%/Trap/_exit.S
+	%D%/Trap/_exit.S \
+	%D%/Trap/_close.c \
+	%D%/Trap/_isatty.c \
+	%D%/Trap/internal/fsstate.c
