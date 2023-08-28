@@ -10,14 +10,10 @@
     .global _start
 _start:
 
-    ; Initialize the global pointer
-    ; Use a symbol defined in the linker script to do this
-    PSEUDO.LOADCONSTW R4, __gp
-
-    ; Initialize the stack pointer
-    ; Recall that the argument is 32-bit *signed*, so we have to flip the bits
-    ; R6 = 0xf0000000
-    PSEUDO.LOADCONSTW R6, ~0x0fffffff
+    ; Initialize the global pointer and stack pointer
+    ; Use symbols defined in the linker script to do this
+    PSEUDO.LOADCONSTW R4, __gp_init
+    PSEUDO.LOADCONSTW R6, __sp_init
 
     ; Zero-out the .bss section
     ; Assume both of these are word-aligned

@@ -59,7 +59,7 @@ SECTIONS {
     so force it to alignment just like `.bss`.
   */
   .sdata ALIGN(4) : {
-    __gp = .;
+    __gp_init = .;
     *(.sdata)
     *(.sdata.*)
   }
@@ -78,6 +78,9 @@ SECTIONS {
     . = ALIGN(4);
     __bss_end = .;
   } >ram
+
+  /* Don't forget to define where the stack starts */
+  __sp_init = 0xf0000000;
 
   /*
     Call finalizers
