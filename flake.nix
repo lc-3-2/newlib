@@ -14,17 +14,26 @@
     let
       name = "newlib-lc-3.2-dev";
       pkgs = nixpkgs-23-05.legacyPackages.${system};
-      llvm-lc-3-2-pkg = llvm-lc-3-2.packages.${system}.llvm-lc-3-2;
       inherit (pkgs) stdenv;
+
+      # Convenience variable to reference the LLVM package
+      llvm-lc-3-2-pkg = llvm-lc-3-2.packages.${system}.llvm-lc-3-2;
 
       # Ensure that the compiler is present at runtime. We need it to use the
       # library, after all.
       propagatedBuildInputs = [
         llvm-lc-3-2-pkg
       ];
-
       nativeBuildInputs = [
         pkgs.texinfo
+      ];
+
+      # What flags we'll use during cross-compilation
+      cflags-for-lc-3-2 = builtins.concatStringsSep " " [
+        "--target=lc_3.2-none"
+        "-g"
+        "-ffunction-sections"
+        "-fdata-sections"
       ];
 
     in {
@@ -54,9 +63,9 @@
             DLLTOOL_FOR_TARGET="${llvm-lc-3-2-pkg}/bin/llvm-dlltool" \
             LIPO_FOR_TARGET="${llvm-lc-3-2-pkg}/bin/llvm-lipo" \
             WINDRES_FOR_TARGET="${llvm-lc-3-2-pkg}/bin/llvm-windres" \
-            CFLAGS_FOR_TARGET="-g -ffunction-sections -fdata-sections" \
+            CFLAGS_FOR_TARGET="${cflags-for-lc-3-2}" \
             ../configure \
-              --prefix=$out --host=${system} --target=lc_3.2 \
+              --prefix=$out --host=${system} --target=lc_3.2-none \
               --enable-newlib-register-fini --disable-newlib-supplied-syscalls \
               --disable-multilib
 
@@ -83,7 +92,7 @@
 
             cat <<EOF > $out/bin/lc32newlib-sysroot
             #!/bin/bash
-            echo "$out/lc_3.2/"
+            echo "$out/lc_3.2-none/"
             EOF
 
             chmod +x $out/bin/lc32newlib-sysroot
