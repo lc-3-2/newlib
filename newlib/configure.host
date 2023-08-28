@@ -379,6 +379,7 @@ case "${host_cpu}" in
 	;;
   lc_3.2)
 	have_init_fini=no
+	newlib_cflags="${newlib_cflags} -ffunction-sections -fdata-sections"
 	;;
   *)
 	echo '***' "Newlib does not support CPU ${host_cpu}" 1>&2
@@ -727,6 +728,9 @@ newlib_cflags="${newlib_cflags} -DCLOCK_PROVIDED -DMALLOC_PROVIDED -DEXIT_PROVID
   iq2000*)
 	syscall_dir=syscalls
 	default_newlib_io_long_long="yes"
+	;;
+  lc_3.2-*-*)
+	syscall_dir=syscalls
 	;;
   lm32-*-*)
 	syscall_dir=syscalls

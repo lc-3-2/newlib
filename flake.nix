@@ -32,8 +32,6 @@
       cflags-for-lc-3-2 = builtins.concatStringsSep " " [
         "--target=lc_3.2-none"
         "-g"
-        "-ffunction-sections"
-        "-fdata-sections"
       ];
 
     in {
