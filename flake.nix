@@ -28,9 +28,11 @@
         pkgs.texinfo
       ];
 
+      # What target we'll be compiling to
+      target-for-lc-3-2 = "lc_3.2-none";
       # What flags we'll use during cross-compilation
       cflags-for-lc-3-2 = builtins.concatStringsSep " " [
-        "--target=lc_3.2-none"
+        "--target=${target-for-lc-3-2}"
         "-g"
         "-ffunction-sections"
         "-fdata-sections"
@@ -65,7 +67,7 @@
             WINDRES_FOR_TARGET="${llvm-lc-3-2-pkg}/bin/llvm-windres" \
             CFLAGS_FOR_TARGET="${cflags-for-lc-3-2}" \
             ../configure \
-              --prefix=$out --host=${system} --target=lc_3.2-none \
+              --prefix=$out --host=${system} --target=${target-for-lc-3-2} \
               --enable-newlib-register-fini --disable-newlib-supplied-syscalls \
               --disable-multilib
 
@@ -92,7 +94,7 @@
 
             cat <<EOF > $out/bin/lc32newlib-sysroot
             #!/bin/bash
-            echo "$out/lc_3.2-none/"
+            echo "$out/${target-for-lc-3-2}/"
             EOF
 
             chmod +x $out/bin/lc32newlib-sysroot
