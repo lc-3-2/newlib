@@ -7,7 +7,7 @@
 # As for what this target does, it seems to install the linker scripts.
 
 multilibtool_DATA += \
-	%D%/lc32newlibTrap.ld
+	%D%/lc32Trap.ld
 
 ###
 # Backend for TRAP-based syscalls
@@ -16,7 +16,7 @@ multilibtool_DATA += \
 # MMIO at all. As such, these may be unsuited for supervisor-mode programming.
 # Still, it's useful since it's easy to simulate.
 
-multilibtool_LIBRARIES += %D%/liblc32newlibTrap.a
-%C%_liblc32newlibTrap_a_SOURCES = \
-	%D%/common/_start.S \
-	%D%/lc32newlibTrap/_exit.S
+multilibtool_LIBRARIES += %D%/liblc32glossTrap.a
+%C%_liblc32glossTrap_a_SOURCES = \
+	%D%/x/_start.S \
+	%D%/Trap/_exit.S
