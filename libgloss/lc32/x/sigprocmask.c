@@ -13,6 +13,6 @@ extern int errno;
 // cares about the result.
 int sigprocmask(int how, const sigset_t *restrict set,
                 sigset_t *restrict oset) {
-  errno = EINVAL;
+  errno = ENOSYS;
   return -1;
 }
