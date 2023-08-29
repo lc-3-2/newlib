@@ -44,4 +44,4 @@ multilibtool_LIBRARIES += %D%/liblc32glossTrap.a
 	%D%/Trap/_exit.S \
 	%D%/Trap/_close.c \
 	%D%/Trap/_isatty.c \
-	%D%/Trap/internal/fsstate.c
+	%D%/Trap/internal/stdfd-state.c

@@ -2,7 +2,7 @@
 #include <errno.h>
 #include <unistd.h>
 
-#include "internal/fsstate.h"
+#include "internal/stdfd-state.h"
 
 // Remember, all system-level code uses the global variable errno
 // See: newlib/libc/reent/reent.c
@@ -11,23 +11,27 @@ extern int errno;
 
 int _close(int fd) {
 
-  // Check the "standard" file descriptors. Make sure they're actually open
-  // first. If they are marked as open, mark them as closed.
-  if (fd == STDIN_FILENO && !__lc32Trap_stdin_closed) {
-    __lc32Trap_stdin_closed = true;
-    return 0;
-  }
-  if (fd == STDOUT_FILENO && !__lc32Trap_stdout_closed) {
-    __lc32Trap_stdout_closed = true;
-    return 0;
-  }
-  if (fd == STDERR_FILENO && !__lc32Trap_stderr_closed) {
-    __lc32Trap_stderr_closed = true;
-    return 0;
+  // If the input is not a standard file descriptor, it cannot exist. Similarly,
+  // if the input is a standard file descriptor that was previously closed, it
+  // does not currently exist. Handle these cases.
+  if (!__lc32_is_open_stdfd(fd)) {
+    errno = EBADF;
+    return -1;
   }
 
-  // It either wasn't one of the standard descriptors, or the standard
-  // descriptor was closed. Either way, it's a bad file descriptor.
-  errno = EBADF;
-  return -1;
+  // The input is a currently open standard file descriptor. Figure out which
+  // one it is and mark it as closed.
+  switch (fd) {
+  case STDIN_FILENO:
+    __lc32_stdin_closed = true;
+    break;
+  case STDOUT_FILENO:
+    __lc32_stdout_closed = true;
+    break;
+  case STDERR_FILENO:
+    __lc32_stderr_closed = true;
+    break;
+  }
+  // Return success
+  return 0;
 }
