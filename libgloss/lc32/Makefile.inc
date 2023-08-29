@@ -34,6 +34,8 @@ multilibtool_LIBRARIES += %D%/liblc32glossx.a
 	%D%/x/_getpid.c \
 	%D%/x/_kill.c \
 	%D%/x/_wait.c \
+	%D%/x/_fork.c \
+	%D%/x/_execve.c \
 	%D%/x/sigprocmask.c \
 	%D%/x/internal/sigset-state.c
 
@@ -53,6 +55,8 @@ multilibtool_LIBRARIES += %D%/liblc32glossTrap.a
 	%D%/x/_getpid.c \
 	%D%/x/_kill.c \
 	%D%/x/_wait.c \
+	%D%/x/_fork.c \
+	%D%/x/_execve.c \
 	%D%/x/sigprocmask.c \
 	%D%/x/internal/sigset-state.c \
 	%D%/Trap/_exit.S \
