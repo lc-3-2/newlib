@@ -24,6 +24,9 @@ multilibtool_LIBRARIES += %D%/liblc32glossx.a
 	%D%/x/_exit.S \
 	%D%/x/_sbrk.c \
 	%D%/x/_open.c \
+	%D%/x/_mkdir.c \
+	%D%/x/_link.c \
+	%D%/x/_unlink.c \
 	%D%/x/_close.c \
 	%D%/x/_lseek.c \
 	%D%/x/_isatty.c \
@@ -51,6 +54,9 @@ multilibtool_LIBRARIES += %D%/liblc32glossTrap.a
 	%D%/x/_start.S \
 	%D%/x/_sbrk.c \
 	%D%/x/_open.c \
+	%D%/x/_mkdir.c \
+	%D%/x/_link.c \
+	%D%/x/_unlink.c \
 	%D%/x/_stat.c \
 	%D%/x/_getpid.c \
 	%D%/x/_kill.c \

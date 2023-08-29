@@ -418,6 +418,9 @@ lc32_liblc32glossTrap_a_LIBADD =
 @CONFIG_LC32_TRUE@	lc32/x/_start.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_sbrk.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_open.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/_mkdir.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/_link.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/_unlink.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_stat.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_getpid.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_kill.$(OBJEXT) \
@@ -443,6 +446,9 @@ lc32_liblc32glossx_a_LIBADD =
 @CONFIG_LC32_TRUE@	lc32/x/_exit.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_sbrk.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_open.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/_mkdir.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/_link.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/_unlink.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_close.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_lseek.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_isatty.$(OBJEXT) \
@@ -1174,6 +1180,9 @@ TEXINFO_TEX = ../texinfo/texinfo.tex
 @CONFIG_LC32_TRUE@	lc32/x/_exit.S \
 @CONFIG_LC32_TRUE@	lc32/x/_sbrk.c \
 @CONFIG_LC32_TRUE@	lc32/x/_open.c \
+@CONFIG_LC32_TRUE@	lc32/x/_mkdir.c \
+@CONFIG_LC32_TRUE@	lc32/x/_link.c \
+@CONFIG_LC32_TRUE@	lc32/x/_unlink.c \
 @CONFIG_LC32_TRUE@	lc32/x/_close.c \
 @CONFIG_LC32_TRUE@	lc32/x/_lseek.c \
 @CONFIG_LC32_TRUE@	lc32/x/_isatty.c \
@@ -1193,6 +1202,9 @@ TEXINFO_TEX = ../texinfo/texinfo.tex
 @CONFIG_LC32_TRUE@	lc32/x/_start.S \
 @CONFIG_LC32_TRUE@	lc32/x/_sbrk.c \
 @CONFIG_LC32_TRUE@	lc32/x/_open.c \
+@CONFIG_LC32_TRUE@	lc32/x/_mkdir.c \
+@CONFIG_LC32_TRUE@	lc32/x/_link.c \
+@CONFIG_LC32_TRUE@	lc32/x/_unlink.c \
 @CONFIG_LC32_TRUE@	lc32/x/_stat.c \
 @CONFIG_LC32_TRUE@	lc32/x/_getpid.c \
 @CONFIG_LC32_TRUE@	lc32/x/_kill.c \
@@ -1634,6 +1646,12 @@ lc32/x/_start.$(OBJEXT): lc32/x/$(am__dirstamp) \
 lc32/x/_sbrk.$(OBJEXT): lc32/x/$(am__dirstamp) \
 	lc32/x/$(DEPDIR)/$(am__dirstamp)
 lc32/x/_open.$(OBJEXT): lc32/x/$(am__dirstamp) \
+	lc32/x/$(DEPDIR)/$(am__dirstamp)
+lc32/x/_mkdir.$(OBJEXT): lc32/x/$(am__dirstamp) \
+	lc32/x/$(DEPDIR)/$(am__dirstamp)
+lc32/x/_link.$(OBJEXT): lc32/x/$(am__dirstamp) \
+	lc32/x/$(DEPDIR)/$(am__dirstamp)
+lc32/x/_unlink.$(OBJEXT): lc32/x/$(am__dirstamp) \
 	lc32/x/$(DEPDIR)/$(am__dirstamp)
 lc32/x/_stat.$(OBJEXT): lc32/x/$(am__dirstamp) \
 	lc32/x/$(DEPDIR)/$(am__dirstamp)
@@ -2178,12 +2196,15 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_getpid.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_isatty.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_kill.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_link.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_lseek.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_mkdir.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_open.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_read.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_sbrk.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_start.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_stat.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_unlink.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_wait.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_write.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/sigprocmask.Po@am__quote@
