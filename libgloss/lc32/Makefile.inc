@@ -29,6 +29,8 @@ multilibtool_LIBRARIES += %D%/liblc32glossx.a
 	%D%/x/_isatty.c \
 	%D%/x/_stat.c \
 	%D%/x/_fstat.c \
+	%D%/x/_read.c \
+	%D%/x/_write.c \
 	%D%/x/sigprocmask.c
 
 ###
@@ -50,4 +52,6 @@ multilibtool_LIBRARIES += %D%/liblc32glossTrap.a
 	%D%/Trap/_lseek.c \
 	%D%/Trap/_isatty.c \
 	%D%/Trap/_fstat.c \
+	%D%/Trap/_read.c \
+	%D%/Trap/_write.c \
 	%D%/Trap/internal/stdfd-state.c
