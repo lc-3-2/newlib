@@ -1,5 +1,6 @@
 TARGET(elf32-lc-3.2)
 ENTRY(_start)
+INPUT(liblc32glossTrap.a)
 
 MEMORY {
   ram (rwx) : ORIGIN = 0x30000000, LENGTH = 0xc0000000
