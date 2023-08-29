@@ -418,11 +418,13 @@ lc32_liblc32glossTrap_a_LIBADD =
 @CONFIG_LC32_TRUE@	lc32/x/_start.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_sbrk.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_open.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/_stat.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/sigprocmask.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/Trap/_exit.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/Trap/_close.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/Trap/_lseek.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/Trap/_isatty.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/Trap/_fstat.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/Trap/internal/stdfd-state.$(OBJEXT)
 lc32_liblc32glossTrap_a_OBJECTS =  \
 	$(am_lc32_liblc32glossTrap_a_OBJECTS)
@@ -436,6 +438,8 @@ lc32_liblc32glossx_a_LIBADD =
 @CONFIG_LC32_TRUE@	lc32/x/_close.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_lseek.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_isatty.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/_stat.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/_fstat.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/sigprocmask.$(OBJEXT)
 lc32_liblc32glossx_a_OBJECTS = $(am_lc32_liblc32glossx_a_OBJECTS)
 libnosys_libnosys_a_AR = $(AR) $(ARFLAGS)
@@ -1157,17 +1161,21 @@ TEXINFO_TEX = ../texinfo/texinfo.tex
 @CONFIG_LC32_TRUE@	lc32/x/_close.c \
 @CONFIG_LC32_TRUE@	lc32/x/_lseek.c \
 @CONFIG_LC32_TRUE@	lc32/x/_isatty.c \
+@CONFIG_LC32_TRUE@	lc32/x/_stat.c \
+@CONFIG_LC32_TRUE@	lc32/x/_fstat.c \
 @CONFIG_LC32_TRUE@	lc32/x/sigprocmask.c
 
 @CONFIG_LC32_TRUE@lc32_liblc32glossTrap_a_SOURCES = \
 @CONFIG_LC32_TRUE@	lc32/x/_start.S \
 @CONFIG_LC32_TRUE@	lc32/x/_sbrk.c \
 @CONFIG_LC32_TRUE@	lc32/x/_open.c \
+@CONFIG_LC32_TRUE@	lc32/x/_stat.c \
 @CONFIG_LC32_TRUE@	lc32/x/sigprocmask.c \
 @CONFIG_LC32_TRUE@	lc32/Trap/_exit.S \
 @CONFIG_LC32_TRUE@	lc32/Trap/_close.c \
 @CONFIG_LC32_TRUE@	lc32/Trap/_lseek.c \
 @CONFIG_LC32_TRUE@	lc32/Trap/_isatty.c \
+@CONFIG_LC32_TRUE@	lc32/Trap/_fstat.c \
 @CONFIG_LC32_TRUE@	lc32/Trap/internal/stdfd-state.c
 
 all: config.h
@@ -1595,6 +1603,8 @@ lc32/x/_sbrk.$(OBJEXT): lc32/x/$(am__dirstamp) \
 	lc32/x/$(DEPDIR)/$(am__dirstamp)
 lc32/x/_open.$(OBJEXT): lc32/x/$(am__dirstamp) \
 	lc32/x/$(DEPDIR)/$(am__dirstamp)
+lc32/x/_stat.$(OBJEXT): lc32/x/$(am__dirstamp) \
+	lc32/x/$(DEPDIR)/$(am__dirstamp)
 lc32/x/sigprocmask.$(OBJEXT): lc32/x/$(am__dirstamp) \
 	lc32/x/$(DEPDIR)/$(am__dirstamp)
 lc32/Trap/$(am__dirstamp):
@@ -1610,6 +1620,8 @@ lc32/Trap/_close.$(OBJEXT): lc32/Trap/$(am__dirstamp) \
 lc32/Trap/_lseek.$(OBJEXT): lc32/Trap/$(am__dirstamp) \
 	lc32/Trap/$(DEPDIR)/$(am__dirstamp)
 lc32/Trap/_isatty.$(OBJEXT): lc32/Trap/$(am__dirstamp) \
+	lc32/Trap/$(DEPDIR)/$(am__dirstamp)
+lc32/Trap/_fstat.$(OBJEXT): lc32/Trap/$(am__dirstamp) \
 	lc32/Trap/$(DEPDIR)/$(am__dirstamp)
 lc32/Trap/internal/$(am__dirstamp):
 	@$(MKDIR_P) lc32/Trap/internal
@@ -1635,6 +1647,8 @@ lc32/x/_close.$(OBJEXT): lc32/x/$(am__dirstamp) \
 lc32/x/_lseek.$(OBJEXT): lc32/x/$(am__dirstamp) \
 	lc32/x/$(DEPDIR)/$(am__dirstamp)
 lc32/x/_isatty.$(OBJEXT): lc32/x/$(am__dirstamp) \
+	lc32/x/$(DEPDIR)/$(am__dirstamp)
+lc32/x/_fstat.$(OBJEXT): lc32/x/$(am__dirstamp) \
 	lc32/x/$(DEPDIR)/$(am__dirstamp)
 
 lc32/liblc32glossx.a: $(lc32_liblc32glossx_a_OBJECTS) $(lc32_liblc32glossx_a_DEPENDENCIES) $(EXTRA_lc32_liblc32glossx_a_DEPENDENCIES) lc32/$(am__dirstamp)
@@ -2090,16 +2104,19 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@iq2000/$(DEPDIR)/write.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/Trap/$(DEPDIR)/_close.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/Trap/$(DEPDIR)/_exit.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lc32/Trap/$(DEPDIR)/_fstat.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/Trap/$(DEPDIR)/_isatty.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/Trap/$(DEPDIR)/_lseek.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/Trap/internal/$(DEPDIR)/stdfd-state.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_close.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_exit.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_fstat.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_isatty.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_lseek.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_open.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_sbrk.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_start.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_stat.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/sigprocmask.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libnosys/$(DEPDIR)/_exit.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libnosys/$(DEPDIR)/chown.Po@am__quote@
