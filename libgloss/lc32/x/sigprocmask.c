@@ -4,11 +4,6 @@
 
 #include "internal/sigmask-state.h"
 
-// Remember, all system-level code uses the global variable errno
-// See: newlib/libc/reent/reent.c
-#undef errno
-extern int errno;
-
 int sigprocmask(int how, const sigset_t *restrict set,
                 sigset_t *restrict oset) {
 

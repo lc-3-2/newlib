@@ -39,6 +39,7 @@ multilibtool_LIBRARIES += %D%/liblc32glossx.a
 	%D%/x/_wait.c \
 	%D%/x/_fork.c \
 	%D%/x/_execve.c \
+	%D%/x/getentropy.c \
 	%D%/x/sigprocmask.c \
 	%D%/x/internal/sigmask-state.c
 
@@ -63,6 +64,7 @@ multilibtool_LIBRARIES += %D%/liblc32glossTrap.a
 	%D%/x/_wait.c \
 	%D%/x/_fork.c \
 	%D%/x/_execve.c \
+	%D%/x/getentropy.c \
 	%D%/x/sigprocmask.c \
 	%D%/x/internal/sigmask-state.c \
 	%D%/Trap/_exit.S \

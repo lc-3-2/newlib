@@ -427,6 +427,7 @@ lc32_liblc32glossTrap_a_LIBADD =
 @CONFIG_LC32_TRUE@	lc32/x/_wait.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_fork.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_execve.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/getentropy.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/sigprocmask.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/internal/sigmask-state.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/Trap/_exit.$(OBJEXT) \
@@ -461,6 +462,7 @@ lc32_liblc32glossx_a_LIBADD =
 @CONFIG_LC32_TRUE@	lc32/x/_wait.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_fork.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_execve.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/getentropy.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/sigprocmask.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/internal/sigmask-state.$(OBJEXT)
 lc32_liblc32glossx_a_OBJECTS = $(am_lc32_liblc32glossx_a_OBJECTS)
@@ -1195,6 +1197,7 @@ TEXINFO_TEX = ../texinfo/texinfo.tex
 @CONFIG_LC32_TRUE@	lc32/x/_wait.c \
 @CONFIG_LC32_TRUE@	lc32/x/_fork.c \
 @CONFIG_LC32_TRUE@	lc32/x/_execve.c \
+@CONFIG_LC32_TRUE@	lc32/x/getentropy.c \
 @CONFIG_LC32_TRUE@	lc32/x/sigprocmask.c \
 @CONFIG_LC32_TRUE@	lc32/x/internal/sigmask-state.c
 
@@ -1211,6 +1214,7 @@ TEXINFO_TEX = ../texinfo/texinfo.tex
 @CONFIG_LC32_TRUE@	lc32/x/_wait.c \
 @CONFIG_LC32_TRUE@	lc32/x/_fork.c \
 @CONFIG_LC32_TRUE@	lc32/x/_execve.c \
+@CONFIG_LC32_TRUE@	lc32/x/getentropy.c \
 @CONFIG_LC32_TRUE@	lc32/x/sigprocmask.c \
 @CONFIG_LC32_TRUE@	lc32/x/internal/sigmask-state.c \
 @CONFIG_LC32_TRUE@	lc32/Trap/_exit.S \
@@ -1664,6 +1668,8 @@ lc32/x/_wait.$(OBJEXT): lc32/x/$(am__dirstamp) \
 lc32/x/_fork.$(OBJEXT): lc32/x/$(am__dirstamp) \
 	lc32/x/$(DEPDIR)/$(am__dirstamp)
 lc32/x/_execve.$(OBJEXT): lc32/x/$(am__dirstamp) \
+	lc32/x/$(DEPDIR)/$(am__dirstamp)
+lc32/x/getentropy.$(OBJEXT): lc32/x/$(am__dirstamp) \
 	lc32/x/$(DEPDIR)/$(am__dirstamp)
 lc32/x/sigprocmask.$(OBJEXT): lc32/x/$(am__dirstamp) \
 	lc32/x/$(DEPDIR)/$(am__dirstamp)
@@ -2207,6 +2213,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_unlink.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_wait.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_write.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/getentropy.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/sigprocmask.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/internal/$(DEPDIR)/sigmask-state.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libnosys/$(DEPDIR)/_exit.Po@am__quote@
