@@ -17,9 +17,14 @@ void	longjmp (jmp_buf __jmpb, int __retval)
 #else
 void	longjmp (jmp_buf __jmpb, int __retval);
 #endif
+
+#ifdef __GNUC__
+int	setjmp (jmp_buf __jmpb)
+			__attribute__((returns_twice));
+#else
 int	setjmp (jmp_buf __jmpb);
+#endif
 
 _END_STD_C
 
 #endif /* _SETJMP_H_ */
-
