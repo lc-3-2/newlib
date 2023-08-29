@@ -420,6 +420,7 @@ lc32_liblc32glossTrap_a_LIBADD =
 @CONFIG_LC32_TRUE@	lc32/x/_open.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_stat.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_getpid.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/_kill.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/sigprocmask.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/internal/sigset-state.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/Trap/_exit.$(OBJEXT) \
@@ -447,6 +448,7 @@ lc32_liblc32glossx_a_LIBADD =
 @CONFIG_LC32_TRUE@	lc32/x/_read.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_write.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_getpid.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/_kill.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/sigprocmask.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/internal/sigset-state.$(OBJEXT)
 lc32_liblc32glossx_a_OBJECTS = $(am_lc32_liblc32glossx_a_OBJECTS)
@@ -1174,6 +1176,7 @@ TEXINFO_TEX = ../texinfo/texinfo.tex
 @CONFIG_LC32_TRUE@	lc32/x/_read.c \
 @CONFIG_LC32_TRUE@	lc32/x/_write.c \
 @CONFIG_LC32_TRUE@	lc32/x/_getpid.c \
+@CONFIG_LC32_TRUE@	lc32/x/_kill.c \
 @CONFIG_LC32_TRUE@	lc32/x/sigprocmask.c \
 @CONFIG_LC32_TRUE@	lc32/x/internal/sigset-state.c
 
@@ -1183,6 +1186,7 @@ TEXINFO_TEX = ../texinfo/texinfo.tex
 @CONFIG_LC32_TRUE@	lc32/x/_open.c \
 @CONFIG_LC32_TRUE@	lc32/x/_stat.c \
 @CONFIG_LC32_TRUE@	lc32/x/_getpid.c \
+@CONFIG_LC32_TRUE@	lc32/x/_kill.c \
 @CONFIG_LC32_TRUE@	lc32/x/sigprocmask.c \
 @CONFIG_LC32_TRUE@	lc32/x/internal/sigset-state.c \
 @CONFIG_LC32_TRUE@	lc32/Trap/_exit.S \
@@ -1622,6 +1626,8 @@ lc32/x/_open.$(OBJEXT): lc32/x/$(am__dirstamp) \
 lc32/x/_stat.$(OBJEXT): lc32/x/$(am__dirstamp) \
 	lc32/x/$(DEPDIR)/$(am__dirstamp)
 lc32/x/_getpid.$(OBJEXT): lc32/x/$(am__dirstamp) \
+	lc32/x/$(DEPDIR)/$(am__dirstamp)
+lc32/x/_kill.$(OBJEXT): lc32/x/$(am__dirstamp) \
 	lc32/x/$(DEPDIR)/$(am__dirstamp)
 lc32/x/sigprocmask.$(OBJEXT): lc32/x/$(am__dirstamp) \
 	lc32/x/$(DEPDIR)/$(am__dirstamp)
@@ -2151,6 +2157,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_fstat.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_getpid.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_isatty.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_kill.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_lseek.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_open.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_read.Po@am__quote@
