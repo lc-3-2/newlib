@@ -9,6 +9,8 @@
 #undef errno
 extern int errno;
 
+// Note that this function can close the standard file descriptors. They are
+// made unusable after that, and attempting to do so should result in EBADF.
 int _close(int fd) {
 
   // If the input is not a standard file descriptor, it cannot exist. Similarly,

@@ -421,6 +421,7 @@ lc32_liblc32glossTrap_a_LIBADD =
 @CONFIG_LC32_TRUE@	lc32/x/sigprocmask.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/Trap/_exit.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/Trap/_close.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/Trap/_lseek.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/Trap/_isatty.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/Trap/internal/stdfd-state.$(OBJEXT)
 lc32_liblc32glossTrap_a_OBJECTS =  \
@@ -433,6 +434,7 @@ lc32_liblc32glossx_a_LIBADD =
 @CONFIG_LC32_TRUE@	lc32/x/_sbrk.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_open.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_close.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/_lseek.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_isatty.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/sigprocmask.$(OBJEXT)
 lc32_liblc32glossx_a_OBJECTS = $(am_lc32_liblc32glossx_a_OBJECTS)
@@ -1153,6 +1155,7 @@ TEXINFO_TEX = ../texinfo/texinfo.tex
 @CONFIG_LC32_TRUE@	lc32/x/_sbrk.c \
 @CONFIG_LC32_TRUE@	lc32/x/_open.c \
 @CONFIG_LC32_TRUE@	lc32/x/_close.c \
+@CONFIG_LC32_TRUE@	lc32/x/_lseek.c \
 @CONFIG_LC32_TRUE@	lc32/x/_isatty.c \
 @CONFIG_LC32_TRUE@	lc32/x/sigprocmask.c
 
@@ -1163,6 +1166,7 @@ TEXINFO_TEX = ../texinfo/texinfo.tex
 @CONFIG_LC32_TRUE@	lc32/x/sigprocmask.c \
 @CONFIG_LC32_TRUE@	lc32/Trap/_exit.S \
 @CONFIG_LC32_TRUE@	lc32/Trap/_close.c \
+@CONFIG_LC32_TRUE@	lc32/Trap/_lseek.c \
 @CONFIG_LC32_TRUE@	lc32/Trap/_isatty.c \
 @CONFIG_LC32_TRUE@	lc32/Trap/internal/stdfd-state.c
 
@@ -1603,6 +1607,8 @@ lc32/Trap/_exit.$(OBJEXT): lc32/Trap/$(am__dirstamp) \
 	lc32/Trap/$(DEPDIR)/$(am__dirstamp)
 lc32/Trap/_close.$(OBJEXT): lc32/Trap/$(am__dirstamp) \
 	lc32/Trap/$(DEPDIR)/$(am__dirstamp)
+lc32/Trap/_lseek.$(OBJEXT): lc32/Trap/$(am__dirstamp) \
+	lc32/Trap/$(DEPDIR)/$(am__dirstamp)
 lc32/Trap/_isatty.$(OBJEXT): lc32/Trap/$(am__dirstamp) \
 	lc32/Trap/$(DEPDIR)/$(am__dirstamp)
 lc32/Trap/internal/$(am__dirstamp):
@@ -1625,6 +1631,8 @@ lc32/liblc32glossTrap.a: $(lc32_liblc32glossTrap_a_OBJECTS) $(lc32_liblc32glossT
 lc32/x/_exit.$(OBJEXT): lc32/x/$(am__dirstamp) \
 	lc32/x/$(DEPDIR)/$(am__dirstamp)
 lc32/x/_close.$(OBJEXT): lc32/x/$(am__dirstamp) \
+	lc32/x/$(DEPDIR)/$(am__dirstamp)
+lc32/x/_lseek.$(OBJEXT): lc32/x/$(am__dirstamp) \
 	lc32/x/$(DEPDIR)/$(am__dirstamp)
 lc32/x/_isatty.$(OBJEXT): lc32/x/$(am__dirstamp) \
 	lc32/x/$(DEPDIR)/$(am__dirstamp)
@@ -2083,10 +2091,12 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/Trap/$(DEPDIR)/_close.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/Trap/$(DEPDIR)/_exit.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/Trap/$(DEPDIR)/_isatty.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lc32/Trap/$(DEPDIR)/_lseek.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/Trap/internal/$(DEPDIR)/stdfd-state.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_close.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_exit.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_isatty.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_lseek.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_open.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_sbrk.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_start.Po@am__quote@
