@@ -32,6 +32,6 @@ _ssize_t _read(int fd, void *buf, size_t cnt) {
   // We don't have a way to read from the console without blocking. Therefore,
   // we're forced to read one at most one byte at a time.
   char *b = buf;
-  asm volatile ("IN" : "=a"(*b) : :);
+  asm volatile ("GETC" : "=a"(*b) : :);
   return 1;
 }
