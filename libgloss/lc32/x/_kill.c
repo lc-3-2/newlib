@@ -1,3 +1,4 @@
+#include <_syslist.h>
 #include <errno.h>
 
 // Remember, all system-level code uses the global variable errno
