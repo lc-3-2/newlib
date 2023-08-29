@@ -2,7 +2,7 @@
 #include <signal.h>
 #include <stddef.h>
 
-#include "internal/sigset-state.h"
+#include "internal/sigmask-state.h"
 
 // Remember, all system-level code uses the global variable errno
 // See: newlib/libc/reent/reent.c

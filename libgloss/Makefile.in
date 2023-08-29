@@ -425,7 +425,7 @@ lc32_liblc32glossTrap_a_LIBADD =
 @CONFIG_LC32_TRUE@	lc32/x/_fork.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_execve.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/sigprocmask.$(OBJEXT) \
-@CONFIG_LC32_TRUE@	lc32/x/internal/sigset-state.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/internal/sigmask-state.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/Trap/_exit.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/Trap/_close.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/Trap/_lseek.$(OBJEXT) \
@@ -456,7 +456,7 @@ lc32_liblc32glossx_a_LIBADD =
 @CONFIG_LC32_TRUE@	lc32/x/_fork.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_execve.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/sigprocmask.$(OBJEXT) \
-@CONFIG_LC32_TRUE@	lc32/x/internal/sigset-state.$(OBJEXT)
+@CONFIG_LC32_TRUE@	lc32/x/internal/sigmask-state.$(OBJEXT)
 lc32_liblc32glossx_a_OBJECTS = $(am_lc32_liblc32glossx_a_OBJECTS)
 libnosys_libnosys_a_AR = $(AR) $(ARFLAGS)
 libnosys_libnosys_a_LIBADD =
@@ -1187,7 +1187,7 @@ TEXINFO_TEX = ../texinfo/texinfo.tex
 @CONFIG_LC32_TRUE@	lc32/x/_fork.c \
 @CONFIG_LC32_TRUE@	lc32/x/_execve.c \
 @CONFIG_LC32_TRUE@	lc32/x/sigprocmask.c \
-@CONFIG_LC32_TRUE@	lc32/x/internal/sigset-state.c
+@CONFIG_LC32_TRUE@	lc32/x/internal/sigmask-state.c
 
 @CONFIG_LC32_TRUE@lc32_liblc32glossTrap_a_SOURCES = \
 @CONFIG_LC32_TRUE@	lc32/x/_start.S \
@@ -1200,7 +1200,7 @@ TEXINFO_TEX = ../texinfo/texinfo.tex
 @CONFIG_LC32_TRUE@	lc32/x/_fork.c \
 @CONFIG_LC32_TRUE@	lc32/x/_execve.c \
 @CONFIG_LC32_TRUE@	lc32/x/sigprocmask.c \
-@CONFIG_LC32_TRUE@	lc32/x/internal/sigset-state.c \
+@CONFIG_LC32_TRUE@	lc32/x/internal/sigmask-state.c \
 @CONFIG_LC32_TRUE@	lc32/Trap/_exit.S \
 @CONFIG_LC32_TRUE@	lc32/Trap/_close.c \
 @CONFIG_LC32_TRUE@	lc32/Trap/_lseek.c \
@@ -1655,7 +1655,7 @@ lc32/x/internal/$(am__dirstamp):
 lc32/x/internal/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) lc32/x/internal/$(DEPDIR)
 	@: > lc32/x/internal/$(DEPDIR)/$(am__dirstamp)
-lc32/x/internal/sigset-state.$(OBJEXT):  \
+lc32/x/internal/sigmask-state.$(OBJEXT):  \
 	lc32/x/internal/$(am__dirstamp) \
 	lc32/x/internal/$(DEPDIR)/$(am__dirstamp)
 lc32/Trap/$(am__dirstamp):
@@ -2187,7 +2187,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_wait.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_write.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/sigprocmask.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@lc32/x/internal/$(DEPDIR)/sigset-state.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lc32/x/internal/$(DEPDIR)/sigmask-state.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libnosys/$(DEPDIR)/_exit.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libnosys/$(DEPDIR)/chown.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libnosys/$(DEPDIR)/close.Po@am__quote@

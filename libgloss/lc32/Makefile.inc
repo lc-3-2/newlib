@@ -37,7 +37,7 @@ multilibtool_LIBRARIES += %D%/liblc32glossx.a
 	%D%/x/_fork.c \
 	%D%/x/_execve.c \
 	%D%/x/sigprocmask.c \
-	%D%/x/internal/sigset-state.c
+	%D%/x/internal/sigmask-state.c
 
 ###
 # Backend for TRAP-based syscalls
@@ -58,7 +58,7 @@ multilibtool_LIBRARIES += %D%/liblc32glossTrap.a
 	%D%/x/_fork.c \
 	%D%/x/_execve.c \
 	%D%/x/sigprocmask.c \
-	%D%/x/internal/sigset-state.c \
+	%D%/x/internal/sigmask-state.c \
 	%D%/Trap/_exit.S \
 	%D%/Trap/_close.c \
 	%D%/Trap/_lseek.c \
