@@ -18,8 +18,8 @@ multilibtool_DATA += \
 # There is no corresponding linker script for this backend. It doesn't make much
 # sense to provide one, since we don't even know where the program will be.
 
-multilibtool_LIBRARIES += %D%/liblc32glossx.a
-%C%_liblc32glossx_a_SOURCES = \
+multilibtool_LIBRARIES += %D%/liblc32gloss.a
+%C%_liblc32gloss_a_SOURCES = \
 	%D%/x/_start.S \
 	%D%/x/_exit.S \
 	%D%/x/setjmp.S \

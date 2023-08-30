@@ -217,7 +217,7 @@ check_PROGRAMS = $(am__EXEEXT_2) $(am__EXEEXT_3)
 # These work based off the TRAPs defined in the book. They don't interact with
 # MMIO at all. As such, these may be unsuited for supervisor-mode programming.
 # Still, it's useful since it's easy to simulate.
-@CONFIG_LC32_TRUE@am__append_39 = lc32/liblc32glossx.a \
+@CONFIG_LC32_TRUE@am__append_39 = lc32/liblc32gloss.a \
 @CONFIG_LC32_TRUE@	lc32/liblc32glossTrap.a
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -412,6 +412,36 @@ iq2000_libeval_a_LIBADD =
 @CONFIG_IQ2000_TRUE@	iq2000/utime.$(OBJEXT) \
 @CONFIG_IQ2000_TRUE@	iq2000/write.$(OBJEXT)
 iq2000_libeval_a_OBJECTS = $(am_iq2000_libeval_a_OBJECTS)
+lc32_liblc32gloss_a_AR = $(AR) $(ARFLAGS)
+lc32_liblc32gloss_a_LIBADD =
+@CONFIG_LC32_TRUE@am_lc32_liblc32gloss_a_OBJECTS =  \
+@CONFIG_LC32_TRUE@	lc32/x/_start.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/_exit.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/setjmp.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/longjmp.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/_sbrk.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/_open.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/_mkdir.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/_link.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/_unlink.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/_close.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/_lseek.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/_isatty.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/_stat.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/_fstat.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/_read.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/_write.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/_getpid.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/_kill.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/_wait.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/_fork.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/_execve.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/_gettimeofday.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/_times.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/getentropy.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/sigprocmask.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/internal/sigmask-state.$(OBJEXT)
+lc32_liblc32gloss_a_OBJECTS = $(am_lc32_liblc32gloss_a_OBJECTS)
 lc32_liblc32glossTrap_a_AR = $(AR) $(ARFLAGS)
 lc32_liblc32glossTrap_a_LIBADD =
 @CONFIG_LC32_TRUE@am_lc32_liblc32glossTrap_a_OBJECTS =  \
@@ -444,36 +474,6 @@ lc32_liblc32glossTrap_a_LIBADD =
 @CONFIG_LC32_TRUE@	lc32/Trap/internal/stdfd-state.$(OBJEXT)
 lc32_liblc32glossTrap_a_OBJECTS =  \
 	$(am_lc32_liblc32glossTrap_a_OBJECTS)
-lc32_liblc32glossx_a_AR = $(AR) $(ARFLAGS)
-lc32_liblc32glossx_a_LIBADD =
-@CONFIG_LC32_TRUE@am_lc32_liblc32glossx_a_OBJECTS =  \
-@CONFIG_LC32_TRUE@	lc32/x/_start.$(OBJEXT) \
-@CONFIG_LC32_TRUE@	lc32/x/_exit.$(OBJEXT) \
-@CONFIG_LC32_TRUE@	lc32/x/setjmp.$(OBJEXT) \
-@CONFIG_LC32_TRUE@	lc32/x/longjmp.$(OBJEXT) \
-@CONFIG_LC32_TRUE@	lc32/x/_sbrk.$(OBJEXT) \
-@CONFIG_LC32_TRUE@	lc32/x/_open.$(OBJEXT) \
-@CONFIG_LC32_TRUE@	lc32/x/_mkdir.$(OBJEXT) \
-@CONFIG_LC32_TRUE@	lc32/x/_link.$(OBJEXT) \
-@CONFIG_LC32_TRUE@	lc32/x/_unlink.$(OBJEXT) \
-@CONFIG_LC32_TRUE@	lc32/x/_close.$(OBJEXT) \
-@CONFIG_LC32_TRUE@	lc32/x/_lseek.$(OBJEXT) \
-@CONFIG_LC32_TRUE@	lc32/x/_isatty.$(OBJEXT) \
-@CONFIG_LC32_TRUE@	lc32/x/_stat.$(OBJEXT) \
-@CONFIG_LC32_TRUE@	lc32/x/_fstat.$(OBJEXT) \
-@CONFIG_LC32_TRUE@	lc32/x/_read.$(OBJEXT) \
-@CONFIG_LC32_TRUE@	lc32/x/_write.$(OBJEXT) \
-@CONFIG_LC32_TRUE@	lc32/x/_getpid.$(OBJEXT) \
-@CONFIG_LC32_TRUE@	lc32/x/_kill.$(OBJEXT) \
-@CONFIG_LC32_TRUE@	lc32/x/_wait.$(OBJEXT) \
-@CONFIG_LC32_TRUE@	lc32/x/_fork.$(OBJEXT) \
-@CONFIG_LC32_TRUE@	lc32/x/_execve.$(OBJEXT) \
-@CONFIG_LC32_TRUE@	lc32/x/_gettimeofday.$(OBJEXT) \
-@CONFIG_LC32_TRUE@	lc32/x/_times.$(OBJEXT) \
-@CONFIG_LC32_TRUE@	lc32/x/getentropy.$(OBJEXT) \
-@CONFIG_LC32_TRUE@	lc32/x/sigprocmask.$(OBJEXT) \
-@CONFIG_LC32_TRUE@	lc32/x/internal/sigmask-state.$(OBJEXT)
-lc32_liblc32glossx_a_OBJECTS = $(am_lc32_liblc32glossx_a_OBJECTS)
 libnosys_libnosys_a_AR = $(AR) $(ARFLAGS)
 libnosys_libnosys_a_LIBADD =
 @CONFIG_LIBNOSYS_TRUE@am_libnosys_libnosys_a_OBJECTS =  \
@@ -662,12 +662,12 @@ SOURCES = $(aarch64_librdimon_a_SOURCES) $(arc_libnsim_a_SOURCES) \
 	$(arm_librdimon_a_SOURCES) $(arm_librdpmon_a_SOURCES) \
 	$(bfin_libbfinbsp_a_SOURCES) $(bfin_libsim_a_SOURCES) \
 	$(csky_libsemi_a_SOURCES) $(d30v_libsim_a_SOURCES) \
-	$(iq2000_libeval_a_SOURCES) $(lc32_liblc32glossTrap_a_SOURCES) \
-	$(lc32_liblc32glossx_a_SOURCES) $(libnosys_libnosys_a_SOURCES) \
-	$(libobjs_a_SOURCES) $(lm32_libgloss_a_SOURCES) \
-	$(nios2_libnios2_a_SOURCES) $(riscv_libgloss_a_SOURCES) \
-	$(riscv_libsemihost_a_SOURCES) bfin/sim-test.c iq2000/test.c \
-	$(wince_stub_exe_SOURCES)
+	$(iq2000_libeval_a_SOURCES) $(lc32_liblc32gloss_a_SOURCES) \
+	$(lc32_liblc32glossTrap_a_SOURCES) \
+	$(libnosys_libnosys_a_SOURCES) $(libobjs_a_SOURCES) \
+	$(lm32_libgloss_a_SOURCES) $(nios2_libnios2_a_SOURCES) \
+	$(riscv_libgloss_a_SOURCES) $(riscv_libsemihost_a_SOURCES) \
+	bfin/sim-test.c iq2000/test.c $(wince_stub_exe_SOURCES)
 AM_V_DVIPS = $(am__v_DVIPS_@AM_V@)
 am__v_DVIPS_ = $(am__v_DVIPS_@AM_DEFAULT_V@)
 am__v_DVIPS_0 = @echo "  DVIPS   " $@;
@@ -1185,7 +1185,7 @@ TEXINFO_TEX = ../texinfo/texinfo.tex
 @CONFIG_WINCE_TRUE@wince_stub_exe_SOURCES = wince-stub.c
 @CONFIG_WINCE_TRUE@wince_stub_exe_CPPFLAGS = $(AM_CPPFLAGS) -I$(gdbdir)
 @CONFIG_WINCE_TRUE@wince_stub_exe_LDADD = -lwinsock $(WINCE_STUB_LIBS)
-@CONFIG_LC32_TRUE@lc32_liblc32glossx_a_SOURCES = \
+@CONFIG_LC32_TRUE@lc32_liblc32gloss_a_SOURCES = \
 @CONFIG_LC32_TRUE@	lc32/x/_start.S \
 @CONFIG_LC32_TRUE@	lc32/x/_exit.S \
 @CONFIG_LC32_TRUE@	lc32/x/setjmp.S \
@@ -1663,6 +1663,8 @@ lc32/x/$(DEPDIR)/$(am__dirstamp):
 	@: > lc32/x/$(DEPDIR)/$(am__dirstamp)
 lc32/x/_start.$(OBJEXT): lc32/x/$(am__dirstamp) \
 	lc32/x/$(DEPDIR)/$(am__dirstamp)
+lc32/x/_exit.$(OBJEXT): lc32/x/$(am__dirstamp) \
+	lc32/x/$(DEPDIR)/$(am__dirstamp)
 lc32/x/setjmp.$(OBJEXT): lc32/x/$(am__dirstamp) \
 	lc32/x/$(DEPDIR)/$(am__dirstamp)
 lc32/x/longjmp.$(OBJEXT): lc32/x/$(am__dirstamp) \
@@ -1677,7 +1679,19 @@ lc32/x/_link.$(OBJEXT): lc32/x/$(am__dirstamp) \
 	lc32/x/$(DEPDIR)/$(am__dirstamp)
 lc32/x/_unlink.$(OBJEXT): lc32/x/$(am__dirstamp) \
 	lc32/x/$(DEPDIR)/$(am__dirstamp)
+lc32/x/_close.$(OBJEXT): lc32/x/$(am__dirstamp) \
+	lc32/x/$(DEPDIR)/$(am__dirstamp)
+lc32/x/_lseek.$(OBJEXT): lc32/x/$(am__dirstamp) \
+	lc32/x/$(DEPDIR)/$(am__dirstamp)
+lc32/x/_isatty.$(OBJEXT): lc32/x/$(am__dirstamp) \
+	lc32/x/$(DEPDIR)/$(am__dirstamp)
 lc32/x/_stat.$(OBJEXT): lc32/x/$(am__dirstamp) \
+	lc32/x/$(DEPDIR)/$(am__dirstamp)
+lc32/x/_fstat.$(OBJEXT): lc32/x/$(am__dirstamp) \
+	lc32/x/$(DEPDIR)/$(am__dirstamp)
+lc32/x/_read.$(OBJEXT): lc32/x/$(am__dirstamp) \
+	lc32/x/$(DEPDIR)/$(am__dirstamp)
+lc32/x/_write.$(OBJEXT): lc32/x/$(am__dirstamp) \
 	lc32/x/$(DEPDIR)/$(am__dirstamp)
 lc32/x/_getpid.$(OBJEXT): lc32/x/$(am__dirstamp) \
 	lc32/x/$(DEPDIR)/$(am__dirstamp)
@@ -1706,6 +1720,14 @@ lc32/x/internal/$(DEPDIR)/$(am__dirstamp):
 lc32/x/internal/sigmask-state.$(OBJEXT):  \
 	lc32/x/internal/$(am__dirstamp) \
 	lc32/x/internal/$(DEPDIR)/$(am__dirstamp)
+lc32/$(am__dirstamp):
+	@$(MKDIR_P) lc32
+	@: > lc32/$(am__dirstamp)
+
+lc32/liblc32gloss.a: $(lc32_liblc32gloss_a_OBJECTS) $(lc32_liblc32gloss_a_DEPENDENCIES) $(EXTRA_lc32_liblc32gloss_a_DEPENDENCIES) lc32/$(am__dirstamp)
+	$(AM_V_at)-rm -f lc32/liblc32gloss.a
+	$(AM_V_AR)$(lc32_liblc32gloss_a_AR) lc32/liblc32gloss.a $(lc32_liblc32gloss_a_OBJECTS) $(lc32_liblc32gloss_a_LIBADD)
+	$(AM_V_at)$(RANLIB) lc32/liblc32gloss.a
 lc32/Trap/$(am__dirstamp):
 	@$(MKDIR_P) lc32/Trap
 	@: > lc32/Trap/$(am__dirstamp)
@@ -1735,33 +1757,11 @@ lc32/Trap/internal/$(DEPDIR)/$(am__dirstamp):
 lc32/Trap/internal/stdfd-state.$(OBJEXT):  \
 	lc32/Trap/internal/$(am__dirstamp) \
 	lc32/Trap/internal/$(DEPDIR)/$(am__dirstamp)
-lc32/$(am__dirstamp):
-	@$(MKDIR_P) lc32
-	@: > lc32/$(am__dirstamp)
 
 lc32/liblc32glossTrap.a: $(lc32_liblc32glossTrap_a_OBJECTS) $(lc32_liblc32glossTrap_a_DEPENDENCIES) $(EXTRA_lc32_liblc32glossTrap_a_DEPENDENCIES) lc32/$(am__dirstamp)
 	$(AM_V_at)-rm -f lc32/liblc32glossTrap.a
 	$(AM_V_AR)$(lc32_liblc32glossTrap_a_AR) lc32/liblc32glossTrap.a $(lc32_liblc32glossTrap_a_OBJECTS) $(lc32_liblc32glossTrap_a_LIBADD)
 	$(AM_V_at)$(RANLIB) lc32/liblc32glossTrap.a
-lc32/x/_exit.$(OBJEXT): lc32/x/$(am__dirstamp) \
-	lc32/x/$(DEPDIR)/$(am__dirstamp)
-lc32/x/_close.$(OBJEXT): lc32/x/$(am__dirstamp) \
-	lc32/x/$(DEPDIR)/$(am__dirstamp)
-lc32/x/_lseek.$(OBJEXT): lc32/x/$(am__dirstamp) \
-	lc32/x/$(DEPDIR)/$(am__dirstamp)
-lc32/x/_isatty.$(OBJEXT): lc32/x/$(am__dirstamp) \
-	lc32/x/$(DEPDIR)/$(am__dirstamp)
-lc32/x/_fstat.$(OBJEXT): lc32/x/$(am__dirstamp) \
-	lc32/x/$(DEPDIR)/$(am__dirstamp)
-lc32/x/_read.$(OBJEXT): lc32/x/$(am__dirstamp) \
-	lc32/x/$(DEPDIR)/$(am__dirstamp)
-lc32/x/_write.$(OBJEXT): lc32/x/$(am__dirstamp) \
-	lc32/x/$(DEPDIR)/$(am__dirstamp)
-
-lc32/liblc32glossx.a: $(lc32_liblc32glossx_a_OBJECTS) $(lc32_liblc32glossx_a_DEPENDENCIES) $(EXTRA_lc32_liblc32glossx_a_DEPENDENCIES) lc32/$(am__dirstamp)
-	$(AM_V_at)-rm -f lc32/liblc32glossx.a
-	$(AM_V_AR)$(lc32_liblc32glossx_a_AR) lc32/liblc32glossx.a $(lc32_liblc32glossx_a_OBJECTS) $(lc32_liblc32glossx_a_LIBADD)
-	$(AM_V_at)$(RANLIB) lc32/liblc32glossx.a
 libnosys/$(am__dirstamp):
 	@$(MKDIR_P) libnosys
 	@: > libnosys/$(am__dirstamp)
