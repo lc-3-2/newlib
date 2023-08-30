@@ -36,6 +36,9 @@
         "-g"
         "-ffunction-sections"
         "-fdata-sections"
+        "-Wno-unused-command-line-argument"
+        "-Wno-unknown-pragmas"
+        "-Wno-deprecated-non-prototype"
       ];
 
     in {
