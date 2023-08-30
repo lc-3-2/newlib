@@ -416,6 +416,8 @@ lc32_liblc32glossTrap_a_AR = $(AR) $(ARFLAGS)
 lc32_liblc32glossTrap_a_LIBADD =
 @CONFIG_LC32_TRUE@am_lc32_liblc32glossTrap_a_OBJECTS =  \
 @CONFIG_LC32_TRUE@	lc32/x/_start.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/setjmp.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/longjmp.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_sbrk.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_open.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_mkdir.$(OBJEXT) \
@@ -445,6 +447,8 @@ lc32_liblc32glossx_a_LIBADD =
 @CONFIG_LC32_TRUE@am_lc32_liblc32glossx_a_OBJECTS =  \
 @CONFIG_LC32_TRUE@	lc32/x/_start.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_exit.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/setjmp.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/longjmp.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_sbrk.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_open.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_mkdir.$(OBJEXT) \
@@ -1180,6 +1184,8 @@ TEXINFO_TEX = ../texinfo/texinfo.tex
 @CONFIG_LC32_TRUE@lc32_liblc32glossx_a_SOURCES = \
 @CONFIG_LC32_TRUE@	lc32/x/_start.S \
 @CONFIG_LC32_TRUE@	lc32/x/_exit.S \
+@CONFIG_LC32_TRUE@	lc32/x/setjmp.S \
+@CONFIG_LC32_TRUE@	lc32/x/longjmp.S \
 @CONFIG_LC32_TRUE@	lc32/x/_sbrk.c \
 @CONFIG_LC32_TRUE@	lc32/x/_open.c \
 @CONFIG_LC32_TRUE@	lc32/x/_mkdir.c \
@@ -1203,6 +1209,8 @@ TEXINFO_TEX = ../texinfo/texinfo.tex
 
 @CONFIG_LC32_TRUE@lc32_liblc32glossTrap_a_SOURCES = \
 @CONFIG_LC32_TRUE@	lc32/x/_start.S \
+@CONFIG_LC32_TRUE@	lc32/x/setjmp.S \
+@CONFIG_LC32_TRUE@	lc32/x/longjmp.S \
 @CONFIG_LC32_TRUE@	lc32/x/_sbrk.c \
 @CONFIG_LC32_TRUE@	lc32/x/_open.c \
 @CONFIG_LC32_TRUE@	lc32/x/_mkdir.c \
@@ -1646,6 +1654,10 @@ lc32/x/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) lc32/x/$(DEPDIR)
 	@: > lc32/x/$(DEPDIR)/$(am__dirstamp)
 lc32/x/_start.$(OBJEXT): lc32/x/$(am__dirstamp) \
+	lc32/x/$(DEPDIR)/$(am__dirstamp)
+lc32/x/setjmp.$(OBJEXT): lc32/x/$(am__dirstamp) \
+	lc32/x/$(DEPDIR)/$(am__dirstamp)
+lc32/x/longjmp.$(OBJEXT): lc32/x/$(am__dirstamp) \
 	lc32/x/$(DEPDIR)/$(am__dirstamp)
 lc32/x/_sbrk.$(OBJEXT): lc32/x/$(am__dirstamp) \
 	lc32/x/$(DEPDIR)/$(am__dirstamp)
@@ -2214,6 +2226,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_wait.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_write.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/getentropy.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/longjmp.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/setjmp.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/sigprocmask.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/internal/$(DEPDIR)/sigmask-state.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libnosys/$(DEPDIR)/_exit.Po@am__quote@

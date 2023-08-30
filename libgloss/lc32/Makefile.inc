@@ -22,6 +22,8 @@ multilibtool_LIBRARIES += %D%/liblc32glossx.a
 %C%_liblc32glossx_a_SOURCES = \
 	%D%/x/_start.S \
 	%D%/x/_exit.S \
+	%D%/x/setjmp.S \
+	%D%/x/longjmp.S \
 	%D%/x/_sbrk.c \
 	%D%/x/_open.c \
 	%D%/x/_mkdir.c \
@@ -53,6 +55,8 @@ multilibtool_LIBRARIES += %D%/liblc32glossx.a
 multilibtool_LIBRARIES += %D%/liblc32glossTrap.a
 %C%_liblc32glossTrap_a_SOURCES = \
 	%D%/x/_start.S \
+	%D%/x/setjmp.S \
+	%D%/x/longjmp.S \
 	%D%/x/_sbrk.c \
 	%D%/x/_open.c \
 	%D%/x/_mkdir.c \
