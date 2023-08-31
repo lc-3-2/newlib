@@ -42,11 +42,11 @@
         "nixpkgs-23-05": "nixpkgs-23-05"
       },
       "locked": {
-        "lastModified": 1693186740,
-        "narHash": "sha256-BN0ozn4nllekuUND/a9lx2n7lEyEZMGUQvvQ300yhZM=",
+        "lastModified": 1693463128,
+        "narHash": "sha256-4whatemw7xmY+vHQfOrOI8RKVCN2q8vQ90EzfEnOwMM=",
         "ref": "refs/heads/main",
-        "rev": "696691b72430f83e525c9a6bd6c279421eb5c18f",
-        "revCount": 247,
+        "rev": "e77407729188a3fed5a3b66d89728c47067f3344",
+        "revCount": 250,
         "type": "git",
         "url": "ssh://git@github.com/lc-3-2/llvm.git"
       },
@@ -73,11 +73,11 @@
     },
     "nixpkgs-23-05_2": {
       "locked": {
-        "lastModified": 1693183237,
-        "narHash": "sha256-c7OtyBkZ/vZE/WosBpRGRtkbWZjDHGJP7fg1FyB9Dsc=",
+        "lastModified": 1693428224,
+        "narHash": "sha256-FWUUlhYqkGEySUD0blTADRiDQ7fw+H1ikivfu88uy+w=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "ea5234e7073d5f44728c499192544a84244bf35a",
+        "rev": "841889913dfd06a70ffb39f603e29e46f45f0c1a",
         "type": "github"
       },
       "original": {
