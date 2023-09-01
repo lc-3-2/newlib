@@ -10,6 +10,7 @@ libc_a_SOURCES += \
 	%D%/syskill.c \
 	%D%/syslink.c \
 	%D%/syslseek.c \
+	%D%/sysmkdir.c \
 	%D%/sysopen.c \
 	%D%/sysread.c \
 	%D%/syssbrk.c \
