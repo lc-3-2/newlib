@@ -43,7 +43,7 @@ multilibtool_LIBRARIES += %D%/liblc32gloss.a
 	%D%/x/_execve.c \
 	%D%/x/_gettimeofday.c \
 	%D%/x/_times.c \
-	%D%/x/getentropy.c \
+	%D%/x/_getentropy.c \
 	%D%/x/sigprocmask.c \
 	%D%/x/internal/sigmask-state.c
 
@@ -72,7 +72,7 @@ multilibtool_LIBRARIES += %D%/liblc32glossTrap.a
 	%D%/x/_execve.c \
 	%D%/x/_gettimeofday.c \
 	%D%/x/_times.c \
-	%D%/x/getentropy.c \
+	%D%/x/_getentropy.c \
 	%D%/x/sigprocmask.c \
 	%D%/x/internal/sigmask-state.c \
 	%D%/Trap/_exit.S \

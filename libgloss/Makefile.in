@@ -438,7 +438,7 @@ lc32_liblc32gloss_a_LIBADD =
 @CONFIG_LC32_TRUE@	lc32/x/_execve.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_gettimeofday.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_times.$(OBJEXT) \
-@CONFIG_LC32_TRUE@	lc32/x/getentropy.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/_getentropy.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/sigprocmask.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/internal/sigmask-state.$(OBJEXT)
 lc32_liblc32gloss_a_OBJECTS = $(am_lc32_liblc32gloss_a_OBJECTS)
@@ -461,7 +461,7 @@ lc32_liblc32glossTrap_a_LIBADD =
 @CONFIG_LC32_TRUE@	lc32/x/_execve.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_gettimeofday.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_times.$(OBJEXT) \
-@CONFIG_LC32_TRUE@	lc32/x/getentropy.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/x/_getentropy.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/sigprocmask.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/internal/sigmask-state.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/Trap/_exit.$(OBJEXT) \
@@ -500,6 +500,7 @@ libnosys_libnosys_a_LIBADD =
 @CONFIG_LIBNOSYS_TRUE@	libnosys/unlink.$(OBJEXT) \
 @CONFIG_LIBNOSYS_TRUE@	libnosys/wait.$(OBJEXT) \
 @CONFIG_LIBNOSYS_TRUE@	libnosys/write.$(OBJEXT) \
+@CONFIG_LIBNOSYS_TRUE@	libnosys/getentropy.$(OBJEXT) \
 @CONFIG_LIBNOSYS_TRUE@	libnosys/_exit.$(OBJEXT)
 libnosys_libnosys_a_OBJECTS = $(am_libnosys_libnosys_a_OBJECTS)
 libobjs_a_AR = $(AR) $(ARFLAGS)
@@ -1083,6 +1084,7 @@ TEXINFO_TEX = ../texinfo/texinfo.tex
 @CONFIG_LIBNOSYS_TRUE@	libnosys/unlink.c \
 @CONFIG_LIBNOSYS_TRUE@	libnosys/wait.c \
 @CONFIG_LIBNOSYS_TRUE@	libnosys/write.c \
+@CONFIG_LIBNOSYS_TRUE@	libnosys/getentropy.c \
 @CONFIG_LIBNOSYS_TRUE@	libnosys/_exit.c
 
 @CONFIG_LM32_TRUE@lm32_libgloss_a_SOURCES = \
@@ -1209,7 +1211,7 @@ TEXINFO_TEX = ../texinfo/texinfo.tex
 @CONFIG_LC32_TRUE@	lc32/x/_execve.c \
 @CONFIG_LC32_TRUE@	lc32/x/_gettimeofday.c \
 @CONFIG_LC32_TRUE@	lc32/x/_times.c \
-@CONFIG_LC32_TRUE@	lc32/x/getentropy.c \
+@CONFIG_LC32_TRUE@	lc32/x/_getentropy.c \
 @CONFIG_LC32_TRUE@	lc32/x/sigprocmask.c \
 @CONFIG_LC32_TRUE@	lc32/x/internal/sigmask-state.c
 
@@ -1230,7 +1232,7 @@ TEXINFO_TEX = ../texinfo/texinfo.tex
 @CONFIG_LC32_TRUE@	lc32/x/_execve.c \
 @CONFIG_LC32_TRUE@	lc32/x/_gettimeofday.c \
 @CONFIG_LC32_TRUE@	lc32/x/_times.c \
-@CONFIG_LC32_TRUE@	lc32/x/getentropy.c \
+@CONFIG_LC32_TRUE@	lc32/x/_getentropy.c \
 @CONFIG_LC32_TRUE@	lc32/x/sigprocmask.c \
 @CONFIG_LC32_TRUE@	lc32/x/internal/sigmask-state.c \
 @CONFIG_LC32_TRUE@	lc32/Trap/_exit.S \
@@ -1707,7 +1709,7 @@ lc32/x/_gettimeofday.$(OBJEXT): lc32/x/$(am__dirstamp) \
 	lc32/x/$(DEPDIR)/$(am__dirstamp)
 lc32/x/_times.$(OBJEXT): lc32/x/$(am__dirstamp) \
 	lc32/x/$(DEPDIR)/$(am__dirstamp)
-lc32/x/getentropy.$(OBJEXT): lc32/x/$(am__dirstamp) \
+lc32/x/_getentropy.$(OBJEXT): lc32/x/$(am__dirstamp) \
 	lc32/x/$(DEPDIR)/$(am__dirstamp)
 lc32/x/sigprocmask.$(OBJEXT): lc32/x/$(am__dirstamp) \
 	lc32/x/$(DEPDIR)/$(am__dirstamp)
@@ -1813,6 +1815,8 @@ libnosys/unlink.$(OBJEXT): libnosys/$(am__dirstamp) \
 libnosys/wait.$(OBJEXT): libnosys/$(am__dirstamp) \
 	libnosys/$(DEPDIR)/$(am__dirstamp)
 libnosys/write.$(OBJEXT): libnosys/$(am__dirstamp) \
+	libnosys/$(DEPDIR)/$(am__dirstamp)
+libnosys/getentropy.$(OBJEXT): libnosys/$(am__dirstamp) \
 	libnosys/$(DEPDIR)/$(am__dirstamp)
 libnosys/_exit.$(OBJEXT): libnosys/$(am__dirstamp) \
 	libnosys/$(DEPDIR)/$(am__dirstamp)
@@ -2223,6 +2227,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_exit.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_fork.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_fstat.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_getentropy.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_getpid.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_gettimeofday.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_isatty.Po@am__quote@
@@ -2239,7 +2244,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_unlink.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_wait.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/_write.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/getentropy.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/longjmp.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/setjmp.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/x/$(DEPDIR)/sigprocmask.Po@am__quote@
@@ -2252,6 +2256,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@libnosys/$(DEPDIR)/execve.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libnosys/$(DEPDIR)/fork.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libnosys/$(DEPDIR)/fstat.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@libnosys/$(DEPDIR)/getentropy.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libnosys/$(DEPDIR)/getpid.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libnosys/$(DEPDIR)/gettod.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@libnosys/$(DEPDIR)/isatty.Po@am__quote@
