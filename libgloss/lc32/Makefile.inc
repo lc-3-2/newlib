@@ -7,7 +7,8 @@
 # As for what this target does, it seems to install the linker scripts.
 
 multilibtool_DATA += \
-	%D%/lc32Trap.ld
+	%D%/lc32Trap.ld \
+	%D%/lc32Sim.ld
 
 ###
 # Barebones backend
@@ -83,3 +84,39 @@ multilibtool_LIBRARIES += %D%/liblc32glossTrap.a
 	%D%/Trap/_read.c \
 	%D%/Trap/_write.c \
 	%D%/Trap/internal/stdfd-state.c
+
+###
+# Backend for `lc32sim`
+#
+# This backend is tuned for the devices available in the simulator. It includes
+# the `Trap` capability, as well as drivers for the MMIO devices.
+
+multilibtool_LIBRARIES += %D%/liblc32glossSim.a
+%C%_liblc32glossSim_a_SOURCES = \
+	%D%/x/_start.S \
+	%D%/x/setjmp.S \
+	%D%/x/longjmp.S \
+	%D%/x/_sbrk.c \
+	%D%/x/_open.c \
+	%D%/x/_mkdir.c \
+	%D%/x/_link.c \
+	%D%/x/_unlink.c \
+	%D%/x/_stat.c \
+	%D%/x/_getpid.c \
+	%D%/x/_kill.c \
+	%D%/x/_wait.c \
+	%D%/x/_fork.c \
+	%D%/x/_execve.c \
+	%D%/x/_gettimeofday.c \
+	%D%/x/_times.c \
+	%D%/x/sigprocmask.c \
+	%D%/x/internal/sigmask-state.c \
+	%D%/Trap/_exit.S \
+	%D%/Trap/_close.c \
+	%D%/Trap/_lseek.c \
+	%D%/Trap/_isatty.c \
+	%D%/Trap/_fstat.c \
+	%D%/Trap/_read.c \
+	%D%/Trap/_write.c \
+	%D%/Trap/internal/stdfd-state.c \
+	%D%/Rngmmio/_getentropy.c
