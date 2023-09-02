@@ -12,6 +12,12 @@ volatile uint32_t __lc32_mmio_rng;
 
 int _getentropy(void *buffer, size_t length) {
 
+  // Error checking
+  if (buffer == NULL) {
+    errno = EFAULT;
+    return -1;
+  }
+
   // Convenience variables - copies of the parameters we modify
   char *buf = buffer;
   size_t to_go = length;
