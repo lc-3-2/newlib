@@ -467,8 +467,6 @@ lc32_liblc32glossSim_a_LIBADD =
 @CONFIG_LC32_TRUE@	lc32/x/_wait.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_fork.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/_execve.$(OBJEXT) \
-@CONFIG_LC32_TRUE@	lc32/x/_gettimeofday.$(OBJEXT) \
-@CONFIG_LC32_TRUE@	lc32/x/_times.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/sigprocmask.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/x/internal/sigmask-state.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/Trap/_exit.$(OBJEXT) \
@@ -479,7 +477,9 @@ lc32_liblc32glossSim_a_LIBADD =
 @CONFIG_LC32_TRUE@	lc32/Trap/_read.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/Trap/_write.$(OBJEXT) \
 @CONFIG_LC32_TRUE@	lc32/Trap/internal/stdfd-state.$(OBJEXT) \
-@CONFIG_LC32_TRUE@	lc32/Rngmmio/_getentropy.$(OBJEXT)
+@CONFIG_LC32_TRUE@	lc32/Rngmmio/_getentropy.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/Clockmmio/_gettimeofday.$(OBJEXT) \
+@CONFIG_LC32_TRUE@	lc32/Clockmmio/_times.$(OBJEXT)
 lc32_liblc32glossSim_a_OBJECTS = $(am_lc32_liblc32glossSim_a_OBJECTS)
 lc32_liblc32glossTrap_a_AR = $(AR) $(ARFLAGS)
 lc32_liblc32glossTrap_a_LIBADD =
@@ -1299,8 +1299,6 @@ TEXINFO_TEX = ../texinfo/texinfo.tex
 @CONFIG_LC32_TRUE@	lc32/x/_wait.c \
 @CONFIG_LC32_TRUE@	lc32/x/_fork.c \
 @CONFIG_LC32_TRUE@	lc32/x/_execve.c \
-@CONFIG_LC32_TRUE@	lc32/x/_gettimeofday.c \
-@CONFIG_LC32_TRUE@	lc32/x/_times.c \
 @CONFIG_LC32_TRUE@	lc32/x/sigprocmask.c \
 @CONFIG_LC32_TRUE@	lc32/x/internal/sigmask-state.c \
 @CONFIG_LC32_TRUE@	lc32/Trap/_exit.S \
@@ -1311,7 +1309,9 @@ TEXINFO_TEX = ../texinfo/texinfo.tex
 @CONFIG_LC32_TRUE@	lc32/Trap/_read.c \
 @CONFIG_LC32_TRUE@	lc32/Trap/_write.c \
 @CONFIG_LC32_TRUE@	lc32/Trap/internal/stdfd-state.c \
-@CONFIG_LC32_TRUE@	lc32/Rngmmio/_getentropy.c
+@CONFIG_LC32_TRUE@	lc32/Rngmmio/_getentropy.c \
+@CONFIG_LC32_TRUE@	lc32/Clockmmio/_gettimeofday.c \
+@CONFIG_LC32_TRUE@	lc32/Clockmmio/_times.c
 
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
@@ -1836,6 +1836,17 @@ lc32/Rngmmio/$(DEPDIR)/$(am__dirstamp):
 	@: > lc32/Rngmmio/$(DEPDIR)/$(am__dirstamp)
 lc32/Rngmmio/_getentropy.$(OBJEXT): lc32/Rngmmio/$(am__dirstamp) \
 	lc32/Rngmmio/$(DEPDIR)/$(am__dirstamp)
+lc32/Clockmmio/$(am__dirstamp):
+	@$(MKDIR_P) lc32/Clockmmio
+	@: > lc32/Clockmmio/$(am__dirstamp)
+lc32/Clockmmio/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) lc32/Clockmmio/$(DEPDIR)
+	@: > lc32/Clockmmio/$(DEPDIR)/$(am__dirstamp)
+lc32/Clockmmio/_gettimeofday.$(OBJEXT):  \
+	lc32/Clockmmio/$(am__dirstamp) \
+	lc32/Clockmmio/$(DEPDIR)/$(am__dirstamp)
+lc32/Clockmmio/_times.$(OBJEXT): lc32/Clockmmio/$(am__dirstamp) \
+	lc32/Clockmmio/$(DEPDIR)/$(am__dirstamp)
 
 lc32/liblc32glossSim.a: $(lc32_liblc32glossSim_a_OBJECTS) $(lc32_liblc32glossSim_a_DEPENDENCIES) $(EXTRA_lc32_liblc32glossSim_a_DEPENDENCIES) lc32/$(am__dirstamp)
 	$(AM_V_at)-rm -f lc32/liblc32glossSim.a
@@ -2194,6 +2205,7 @@ mostlyclean-compile:
 	-rm -f csky/*.$(OBJEXT)
 	-rm -f d30v/*.$(OBJEXT)
 	-rm -f iq2000/*.$(OBJEXT)
+	-rm -f lc32/Clockmmio/*.$(OBJEXT)
 	-rm -f lc32/Rngmmio/*.$(OBJEXT)
 	-rm -f lc32/Trap/*.$(OBJEXT)
 	-rm -f lc32/Trap/internal/*.$(OBJEXT)
@@ -2297,6 +2309,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@iq2000/$(DEPDIR)/unlink.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@iq2000/$(DEPDIR)/utime.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@iq2000/$(DEPDIR)/write.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lc32/Clockmmio/$(DEPDIR)/_gettimeofday.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@lc32/Clockmmio/$(DEPDIR)/_times.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/Rngmmio/$(DEPDIR)/_getentropy.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/Trap/$(DEPDIR)/_close.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@lc32/Trap/$(DEPDIR)/_exit.Po@am__quote@
@@ -4603,6 +4617,8 @@ distclean-generic:
 	-rm -f iq2000/$(DEPDIR)/$(am__dirstamp)
 	-rm -f iq2000/$(am__dirstamp)
 	-rm -f lc32/$(am__dirstamp)
+	-rm -f lc32/Clockmmio/$(DEPDIR)/$(am__dirstamp)
+	-rm -f lc32/Clockmmio/$(am__dirstamp)
 	-rm -f lc32/Rngmmio/$(DEPDIR)/$(am__dirstamp)
 	-rm -f lc32/Rngmmio/$(am__dirstamp)
 	-rm -f lc32/Trap/$(DEPDIR)/$(am__dirstamp)
@@ -4634,7 +4650,7 @@ clean-am: clean-aminfo clean-binPROGRAMS clean-checkPROGRAMS \
 
 distclean: distclean-recursive
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
-	-rm -rf ./$(DEPDIR) aarch64/$(DEPDIR) arc/$(DEPDIR) arm/$(DEPDIR) bfin/$(DEPDIR) csky/$(DEPDIR) d30v/$(DEPDIR) iq2000/$(DEPDIR) lc32/Rngmmio/$(DEPDIR) lc32/Trap/$(DEPDIR) lc32/Trap/internal/$(DEPDIR) lc32/x/$(DEPDIR) lc32/x/internal/$(DEPDIR) libnosys/$(DEPDIR) lm32/$(DEPDIR) nios2/$(DEPDIR) riscv/$(DEPDIR)
+	-rm -rf ./$(DEPDIR) aarch64/$(DEPDIR) arc/$(DEPDIR) arm/$(DEPDIR) bfin/$(DEPDIR) csky/$(DEPDIR) d30v/$(DEPDIR) iq2000/$(DEPDIR) lc32/Clockmmio/$(DEPDIR) lc32/Rngmmio/$(DEPDIR) lc32/Trap/$(DEPDIR) lc32/Trap/internal/$(DEPDIR) lc32/x/$(DEPDIR) lc32/x/internal/$(DEPDIR) libnosys/$(DEPDIR) lm32/$(DEPDIR) nios2/$(DEPDIR) riscv/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-hdr distclean-local distclean-tags
@@ -4777,7 +4793,7 @@ installcheck-am:
 maintainer-clean: maintainer-clean-recursive
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 	-rm -rf $(top_srcdir)/autom4te.cache
-	-rm -rf ./$(DEPDIR) aarch64/$(DEPDIR) arc/$(DEPDIR) arm/$(DEPDIR) bfin/$(DEPDIR) csky/$(DEPDIR) d30v/$(DEPDIR) iq2000/$(DEPDIR) lc32/Rngmmio/$(DEPDIR) lc32/Trap/$(DEPDIR) lc32/Trap/internal/$(DEPDIR) lc32/x/$(DEPDIR) lc32/x/internal/$(DEPDIR) libnosys/$(DEPDIR) lm32/$(DEPDIR) nios2/$(DEPDIR) riscv/$(DEPDIR)
+	-rm -rf ./$(DEPDIR) aarch64/$(DEPDIR) arc/$(DEPDIR) arm/$(DEPDIR) bfin/$(DEPDIR) csky/$(DEPDIR) d30v/$(DEPDIR) iq2000/$(DEPDIR) lc32/Clockmmio/$(DEPDIR) lc32/Rngmmio/$(DEPDIR) lc32/Trap/$(DEPDIR) lc32/Trap/internal/$(DEPDIR) lc32/x/$(DEPDIR) lc32/x/internal/$(DEPDIR) libnosys/$(DEPDIR) lm32/$(DEPDIR) nios2/$(DEPDIR) riscv/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-aminfo \
 	maintainer-clean-generic maintainer-clean-local
