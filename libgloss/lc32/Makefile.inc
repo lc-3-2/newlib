@@ -107,8 +107,6 @@ multilibtool_LIBRARIES += %D%/liblc32glossSim.a
 	%D%/x/_wait.c \
 	%D%/x/_fork.c \
 	%D%/x/_execve.c \
-	%D%/x/_gettimeofday.c \
-	%D%/x/_times.c \
 	%D%/x/sigprocmask.c \
 	%D%/x/internal/sigmask-state.c \
 	%D%/Trap/_exit.S \
@@ -119,4 +117,6 @@ multilibtool_LIBRARIES += %D%/liblc32glossSim.a
 	%D%/Trap/_read.c \
 	%D%/Trap/_write.c \
 	%D%/Trap/internal/stdfd-state.c \
-	%D%/Rngmmio/_getentropy.c
+	%D%/Rngmmio/_getentropy.c \
+	%D%/Clockmmio/_gettimeofday.c \
+	%D%/Clockmmio/_times.c

@@ -90,6 +90,7 @@ SECTIONS {
 
   /* Set addresses of MMIO devices */
   __lc32_mmio_rng = 0xf000001c;
+  __lc32_mmio_clock = 0xf0000010;
 
   /*
     Call finalizers
