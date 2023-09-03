@@ -22,7 +22,7 @@ volatile struct __lc32_mmio_clock_t __lc32_mmio_clock;
 
 int _gettimeofday(struct timeval *ptimeval, void *ptimezone) {
 
-  // Error checking
+  // NULL argument checking
   if (ptimeval == NULL) {
     errno = EFAULT;
     return -1;

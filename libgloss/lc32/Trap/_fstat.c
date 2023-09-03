@@ -48,6 +48,12 @@ int _fstat(int fd, struct stat *pstat) {
     return -1;
   }
 
+  // NULL argument checking
+  if (pstat == NULL) {
+    errno = EFAULT;
+    return -1;
+  }
+
   // The input is a currently open standard file descriptor. In particular, it
   // is a terminal. So, set the data for the console.
   memcpy(pstat, &console_stat, sizeof(struct stat));

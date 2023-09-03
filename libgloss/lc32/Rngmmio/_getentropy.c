@@ -12,7 +12,7 @@ volatile uint32_t __lc32_mmio_rng;
 
 int _getentropy(void *buffer, size_t length) {
 
-  // Error checking
+  // NULL argument checking
   if (buffer == NULL) {
     errno = EFAULT;
     return -1;
