@@ -72,6 +72,7 @@
             ../configure \
               --prefix=$out --host=${system} --target=${target-for-lc-3-2} \
               --enable-newlib-register-fini --disable-newlib-supplied-syscalls \
+              --enable-newlib-io-long-long --enable-newlib-io-long-double \
               --disable-multilib
 
             runHook postConfigure
