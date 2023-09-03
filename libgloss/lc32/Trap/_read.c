@@ -29,6 +29,12 @@ _ssize_t _read(int fd, void *buf, size_t cnt) {
     return -1;
   }
 
+  // NULL argument checking
+  if (buf == NULL) {
+    errno = EFAULT;
+    return -1;
+  }
+
   // We don't have a way to read from the console without blocking. Therefore,
   // we're forced to read one at most one byte at a time.
   char *b = buf;

@@ -30,6 +30,12 @@ _ssize_t _write(int fd, const void *buf, size_t cnt) {
     return -1;
   }
 
+  // NULL argument checking
+  if (buf == NULL) {
+    errno = EFAULT;
+    return -1;
+  }
+
   // Write the entire buffer to the console. Cap it at the maximum value for
   // `int` since we may not be able to return more than that.
   const char *b = buf;
