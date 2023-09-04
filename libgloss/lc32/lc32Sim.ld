@@ -59,7 +59,8 @@ SECTIONS {
     Handle `.sdata` for the global pointer. This is assumed to be word-aligned,
     so force it to alignment just like `.bss`.
   */
-  .sdata ALIGN(4) : {
+  . = ALIGN(4);
+  .sdata : {
     __gp_init = .;
     *(.sdata)
     *(.sdata.*)
@@ -71,7 +72,8 @@ SECTIONS {
     doesn't have to be. We also have to ensure anything afterward doesn't
     encroach on the 4-byte alignment
   */
-  .bss ALIGN(4) : {
+  . = ALIGN(4);
+  .bss : {
     __bss_start = .;
     *(.bss)
     *(.bss.*)
