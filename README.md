@@ -3,6 +3,11 @@
 This repository houses a version of Newlib that was modified so that `libgloss`
 has support for LC-3.2 targets.
 
+Note that the implementations provided here are *neither* reentrant *nor*
+thread-safe, even if the `_r` variants are explicitly used. Thus, C Library
+system calls cannot be called from inside signal handlers at all. They also
+cannot be used in a multi-processing context (if that's ever needed).
+
 ## Building
 
 ### Build Environment
