@@ -5,11 +5,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1692799911,
-        "narHash": "sha256-3eihraek4qL744EvQXsK1Ha6C3CR7nnT8X2qWap4RNk=",
+        "lastModified": 1694529238,
+        "narHash": "sha256-zsNZZGTGnMOf9YpHKJqMSsa0dXbfmxeoJ7xHlrt+xmY=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "f9e7cf818399d17d347f847525c5a5a8032e4e44",
+        "rev": "ff7b65b44d01cf9ba6a71320833626af21126384",
         "type": "github"
       },
       "original": {
@@ -42,15 +42,16 @@
         "nixpkgs-23-05": "nixpkgs-23-05"
       },
       "locked": {
-        "lastModified": 1693776645,
-        "narHash": "sha256-lQf7oe2nc6lJ91aPdH3aKsDao2cGHBz3+I4w1HhSqLs=",
-        "ref": "refs/heads/main",
-        "rev": "8e5c7f75fea7434e45cc66f494a588cdf031dda1",
-        "revCount": 252,
+        "lastModified": 1694641355,
+        "narHash": "sha256-MafjIiktD41RevN8ie3RTZ1VQksODWpCOACUaImCpaI=",
+        "ref": "main",
+        "rev": "b27fc965066673bc6d5b514290a5d4ffcc3f35af",
+        "revCount": 253,
         "type": "git",
         "url": "ssh://git@github.com/lc-3-2/llvm.git"
       },
       "original": {
+        "ref": "main",
         "type": "git",
         "url": "ssh://git@github.com/lc-3-2/llvm.git"
       }
@@ -73,11 +74,11 @@
     },
     "nixpkgs-23-05_2": {
       "locked": {
-        "lastModified": 1693774312,
-        "narHash": "sha256-ylAtgZJ+31w6vPT1qL2wsBij9VnS+eir31cGjpPZais=",
+        "lastModified": 1694618689,
+        "narHash": "sha256-UQiOf8CTokDuyQgY6NpeXDL1fkeDHyNI5rfJ+wy9rg8=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "d897388464ed69324d4e73f817c3e4792a1679c0",
+        "rev": "e27ca312d56522b907b998c2ff99169bf12639f2",
         "type": "github"
       },
       "original": {

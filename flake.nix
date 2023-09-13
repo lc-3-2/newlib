@@ -6,7 +6,7 @@
     flake-utils.url = "github:numtide/flake-utils";
 
     # We have to use SSH here since the repository is private
-    llvm-lc-3-2.url = "git+ssh://git@github.com/lc-3-2/llvm.git";
+    llvm-lc-3-2.url = "git+ssh://git@github.com/lc-3-2/llvm.git?ref=main";
   };
 
   outputs = { self, nixpkgs-23-05, flake-utils, llvm-lc-3-2 }@inputs :
