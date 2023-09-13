@@ -8,7 +8,7 @@
 extern int errno;
 
 // Address of the RNG register. Set by the linker script.
-volatile uint32_t __lc32_mmio_rng;
+extern volatile uint32_t __lc32_mmio_rng;
 
 int _getentropy(void *buffer, size_t length) {
 

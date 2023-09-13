@@ -18,7 +18,7 @@ struct __lc32_mmio_clock_t {
 } __attribute__((packed));
 
 // Address of the clock register. Set by the linker script.
-volatile struct __lc32_mmio_clock_t __lc32_mmio_clock;
+extern volatile struct __lc32_mmio_clock_t __lc32_mmio_clock;
 
 int _gettimeofday(struct timeval *ptimeval, void *ptimezone) {
 
