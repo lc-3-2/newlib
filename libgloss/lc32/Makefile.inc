@@ -97,7 +97,6 @@ multilibtool_LIBRARIES += %D%/liblc32glossSim.a
 	%D%/x/setjmp.S \
 	%D%/x/longjmp.S \
 	%D%/x/_sbrk.c \
-	%D%/x/_open.c \
 	%D%/x/_mkdir.c \
 	%D%/x/_link.c \
 	%D%/x/_unlink.c \
@@ -110,13 +109,17 @@ multilibtool_LIBRARIES += %D%/liblc32glossSim.a
 	%D%/x/sigprocmask.c \
 	%D%/x/internal/sigmask-state.c \
 	%D%/Trap/_exit.S \
-	%D%/Trap/_close.c \
-	%D%/Trap/_lseek.c \
 	%D%/Trap/_isatty.c \
 	%D%/Trap/_fstat.c \
-	%D%/Trap/_read.c \
-	%D%/Trap/_write.c \
 	%D%/Trap/internal/stdfd-state.c \
 	%D%/Rngmmio/_getentropy.c \
 	%D%/Clockmmio/_gettimeofday.c \
-	%D%/Clockmmio/_times.c
+	%D%/Clockmmio/_times.c \
+	%D%/Fsmmio/_open.c \
+	%D%/Fsmmio/_read.c \
+	%D%/Fsmmio/_close.c \
+	%D%/Fsmmio/_write.c \
+	%D%/Fsmmio/_lseek.c 
+
+
+
