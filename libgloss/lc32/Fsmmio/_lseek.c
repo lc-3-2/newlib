@@ -21,6 +21,11 @@ struct __lc32_mmio_fs_t {
 extern volatile struct __lc32_mmio_fs_t __lc32_mmio_fs;
 
 _off_t _lseek(int fd, _off_t pos, int whence) {
+    // ensure whence is supported
+    if (whence != SEEK_CUR && whence != SEEK_SET && whence != SEEK_END) {
+      errno = EINVAL;
+      return -1;
+    }
     // give args to device
     __lc32_mmio_fs.fd = fd;
     __lc32_mmio_fs.data1 = pos;

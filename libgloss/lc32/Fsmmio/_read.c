@@ -21,17 +21,22 @@ extern volatile struct __lc32_mmio_fs_t __lc32_mmio_fs;
 // We can't open any files, and we don't start with any file descriptors.
 // Therefore, any file descriptor passed will be invalid.
 _ssize_t _read(int fd, void *buf, size_t cnt) {
-
-  // Early check for zero - do nothing in that case
-  if (cnt == 0)
-    return 0;
+  if (fd < 0) {
+    errno = EBADF;
+    return -1;
+  }
 
   // Check if buffer is non-null
   if (buf == NULL) {
     errno = EFAULT;
     return -1;
   }
-  
+
+  // Early check for zero - do nothing in that case
+  if (cnt == 0) {
+    return 0;
+  }
+
   // Input our data into fs peripheral
   __lc32_mmio_fs.fd = (uint16_t) fd;
   __lc32_mmio_fs.data1 = (uint32_t) buf;

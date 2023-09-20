@@ -19,36 +19,33 @@ struct __lc32_mmio_fs_t {
 } __attribute__((packed));
 
 // Address of the filesystem peripheral. Set by linker script.
-volatile struct __lc32_mmio_fs_t __lc32_mmio_fs;
+extern volatile struct __lc32_mmio_fs_t __lc32_mmio_fs;
 
 
-int _open(const char *file, int flags, int mode) {
+int _link(const char *oldpath, const char *newpath) {
   
-  if (file == NULL) {
+  if (oldpath == NULL || newpath == NULL) {
     errno = EFAULT;
     return -1;
   }
 
-  // Give open args to peripheral first
-  __lc32_mmio_fs.data1 = (uint32_t) file;
-  __lc32_mmio_fs.data2 = (uint32_t) flags;
-  __lc32_mmio_fs.data3 = (uint32_t) mode;
+  // Give link args to peripheral
+  __lc32_mmio_fs.data1 = (uint32_t) oldpath;
+  __lc32_mmio_fs.data2 = (uint32_t) newpath;
 
   // Assigning the mode will start the filesystem peripheral
-  __lc32_mmio_fs.mode = 1;
+  __lc32_mmio_fs.mode = 8;
 
-  // open occurs on peripheral
+  // link occurs on peripheral
 
-  // Filesystem peripheral will write file descriptor to fd field of struct
-  uint32_t descriptor = __lc32_mmio_fs.fd;
+  // check if error occurred
   uint32_t error = __lc32_mmio_fs.data2;
 
   // Peripheral will set fd to 0 and data2 to error code on failure
   if (error != 0) {
-    // printf("Error has occured when opening with errno: %d\n", __lc32_mmio_fs.data2);
-    errno = __lc32_mmio_fs.data2;
+    errno = error;
     return -1;
   }
 
-  return descriptor;
+  return 0;
 }

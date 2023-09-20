@@ -19,27 +19,27 @@ struct __lc32_mmio_fs_t {
 
 extern volatile struct __lc32_mmio_fs_t __lc32_mmio_fs;
 
-int _close(int fd) {
+int _isatty(int fd) {
 
   if (fd < 0) {
     errno = EBADF;
     return -1;
   }
 
-  // Put our close data in first
+  // Put our isatty data in first
   __lc32_mmio_fs.fd = fd;
 
-  // Assigning the mode (close = 2) will start the filesystem peripheral
-  __lc32_mmio_fs.mode = 2;
+  // Assigning the mode will start peripheral (isatty = 7)
+  __lc32_mmio_fs.mode = 7;
 
-  // close occurs on peripheral
+  // isatty occurs on peripheral
 
-  // Filesystem peripheral will return the success code to data3 member
+  // Filesystem peripheral will return the error code
   int error = __lc32_mmio_fs.data2;
   if (error != 0) {
     errno = error;
-    return -1;
+    return 0;
   }
 
-  return 0;
+  return 1;
 }
